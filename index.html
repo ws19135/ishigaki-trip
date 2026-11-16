@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="石垣島手冊">
+<meta name="theme-color" content="#0e5f7e">
+<meta name="description" content="鬧鐘獎 × Club Med 石垣島度假村 4 日｜2026/12/01–12/04 行動版旅遊手冊">
+<title>鬧鐘獎 × Club Med 石垣島 4 日手冊</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="assets/icon-192.png">
+<style>
+:root{
+  --ocean-deep:#0e5f7e;
+  --ocean:#1590b8;
+  --lagoon:#68cdc2;
+  --sand:#faf5ea;
+  --card:#ffffff;
+  --coral:#e8603a;
+  --coral-soft:#ffe9e0;
+  --sun:#ffc94d;
+  --gold:#c9a24b;
+  --gold-soft:#fbf3dc;
+  --night:#17283a;
+  --night-2:#223a52;
+  --ink:#22414f;
+  --ink-soft:#4f6c79;
+  --line:#e8e0d2;
+  --radius:18px;
+  --nav-h:64px;
+  --shadow:0 4px 16px rgba(14,95,126,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Yuanti TC','PingFang TC','Noto Sans TC','Microsoft JhengHei','Heiti TC',system-ui,sans-serif;
+  background:var(--sand);color:var(--ink);
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 16px);
+  min-height:100vh;font-size:15px;line-height:1.65;
+}
+a{color:var(--ocean-deep)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:8px}
+img{max-width:100%;display:block}
+
+/* ===== Header ===== */
+header{position:relative;color:#fff;padding:26px 20px 56px;overflow:hidden;background:var(--ocean-deep)}
+.h-bg{position:absolute;inset:0;background-size:cover;background-position:center 62%}
+header::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(165deg,rgba(14,95,126,.93) 0%,rgba(21,144,184,.78) 55%,rgba(104,205,194,.55) 100%)}
+header>.h-sub,header>.h-title,header>.h-tags{position:relative;z-index:2}
+.h-sub{font-size:12.5px;letter-spacing:.14em;font-weight:700;opacity:.92;white-space:nowrap}
+.h-title{font-size:25px;font-weight:900;margin:6px 0 2px;letter-spacing:.03em;line-height:1.35}
+.h-title .x{font-weight:500;opacity:.8;margin:0 2px}
+.h-title .em{color:var(--sun)}
+.h-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.h-tag{background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700}
+.h-tag.cd{background:var(--sun);color:#5a3d00;border-color:var(--sun);font-weight:900}
+.sos{position:absolute;top:18px;right:16px;z-index:3;border:none;background:#fff;color:var(--coral);font-size:13px;font-weight:900;border-radius:99px;padding:7px 14px;box-shadow:0 4px 12px rgba(0,0,0,.18);cursor:pointer}
+.sos:active{transform:scale(.95)}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:26px;display:block;z-index:2}
+
+/* ===== Layout ===== */
+main{padding:18px 16px 8px;max-width:560px;margin:0 auto}
+.page{display:none;animation:fadeUp .35s ease both}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:900;margin:24px 2px 10px;color:var(--ocean-deep)}
+.sec-title:first-child{margin-top:2px}
+.sec-title::after{content:"";flex:1;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--lagoon) 0 8px,transparent 8px 14px);opacity:.6}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px;border:1px solid #f0e9db}
+.card h3{font-size:16px;font-weight:900;color:var(--ocean-deep);margin-bottom:4px}
+.note{background:var(--coral-soft);border-radius:14px;padding:10px 14px;font-size:14px;color:#a4472a;font-weight:700;margin-bottom:12px}
+.note.blue{background:#e2f4f8;color:var(--ocean-deep)}
+.note.gold{background:var(--gold-soft);color:#7a5a10}
+.muted{color:var(--ink-soft);font-size:13.5px}
+.pill{display:inline-block;font-size:12.5px;font-weight:900;border-radius:99px;padding:1px 10px;margin:2px 4px 2px 0;background:#eef6f8;color:var(--ocean-deep)}
+.pill.pay{background:#fff1dd;color:#9a5a00}
+.pill.book{background:var(--coral-soft);color:#a4472a}
+.pill.age{background:#eef8f0;color:#2e6f46}
+.ph{border-radius:14px;width:100%;height:auto;margin-bottom:12px;background:#dfeef2}
+
+/* ===== Chips / strips ===== */
+.strip{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 10px;margin:0 -16px;scrollbar-width:none;position:sticky;top:0;background:linear-gradient(var(--sand) 85%,transparent);z-index:5}
+.strip::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);color:var(--ink-soft);border-radius:16px;padding:8px 13px;font-size:13.5px;font-weight:900;line-height:1.3;text-align:center;cursor:pointer;transition:.2s;box-shadow:0 2px 6px rgba(14,95,126,.06)}
+.chip small{display:block;font-size:12px;font-weight:700;opacity:.85}
+.chip.on{background:var(--ocean);border-color:var(--ocean);color:#fff;transform:translateY(-2px);box-shadow:0 6px 14px rgba(21,144,184,.35)}
+.chip.sm{padding:6px 12px;border-radius:99px}
+
+/* ===== Day header & timeline ===== */
+.day-head{border-radius:var(--radius);padding:16px;color:#fff;margin-bottom:14px;background:linear-gradient(135deg,var(--ocean) 0%,var(--lagoon) 100%);box-shadow:var(--shadow)}
+.day-head.award{background:linear-gradient(135deg,var(--night) 0%,var(--night-2) 100%)}
+.day-head h2{font-size:18px;font-weight:900;line-height:1.4}
+.day-head p{font-size:13.5px;opacity:.95;margin-top:3px;font-weight:700}
+.tl{position:relative;padding-left:64px}
+.tl::before{content:"";position:absolute;left:52px;top:8px;bottom:8px;border-left:2px dashed #cfe6ea}
+.tl-item{position:relative;margin-bottom:12px}
+.tl-time{position:absolute;left:-64px;top:14px;width:46px;text-align:right;font-size:13px;font-weight:900;color:var(--ocean-deep);line-height:1.2}
+.tl-dot{position:absolute;left:-16.5px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--coral);border:2.5px solid #fff;box-shadow:0 0 0 2px var(--coral)}
+.tl-item.hl .tl-dot{background:var(--sun);box-shadow:0 0 0 2px var(--gold)}
+.tl-card{background:#fff;border:1px solid #f0e9db;border-radius:14px;padding:11px 13px;box-shadow:0 2px 8px rgba(14,95,126,.06)}
+.tl-item.hl .tl-card{border:1.5px solid var(--sun);background:#fffdf4}
+.tl-item.past{opacity:.55}
+.tl-item.next .tl-card{box-shadow:0 0 0 2.5px var(--coral),0 6px 16px rgba(232,96,58,.2)}
+.tl-badge{display:inline-block;background:var(--coral);color:#fff;font-size:12px;font-weight:900;border-radius:99px;padding:0 9px;margin-bottom:3px}
+.tl-name{font-weight:900;font-size:15px}
+.tl-meta{font-size:14px;color:var(--ink-soft);margin-top:2px}
+.tl-cost{display:inline-block;background:#fff1dd;color:#8a4f00;font-size:12.5px;font-weight:900;border-radius:8px;padding:1px 8px;margin-top:6px;margin-right:6px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--ocean),#22a8cc);color:#fff;text-decoration:none;font-size:13px;font-weight:900;border:none;border-radius:99px;padding:6px 14px;box-shadow:0 3px 8px rgba(21,144,184,.3);transition:.15s;cursor:pointer}
+.btn:active{transform:scale(.95)}
+.btn.ghost{background:#fff;color:var(--ocean-deep);border:1.5px solid #bfe0e8;box-shadow:none}
+.btn.coral{background:linear-gradient(135deg,var(--coral),#ff9a76);box-shadow:0 3px 8px rgba(232,96,58,.3)}
+.btn.block{display:flex;justify-content:center;width:100%;padding:11px;font-size:15px;border-radius:14px}
+
+/* ===== Accordion ===== */
+details.acc{background:#fff;border:1px solid #f0e9db;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+details.acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:16px;font-weight:900;color:var(--ocean-deep);min-height:52px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"＋";margin-left:auto;color:var(--coral);font-size:18px;font-weight:900}
+details.acc[open]>summary::after{content:"－"}
+details.acc[open]>summary{border-bottom:1px dashed #eee5d4}
+.acc-body{padding:14px 16px 16px}
+.acc-body h4{font-size:14.5px;font-weight:900;color:var(--ocean-deep);margin:14px 0 4px}
+.acc-body h4:first-child{margin-top:0}
+.acc-body ul{padding-left:1.15em}
+.acc-body li{margin:2px 0;font-size:14.5px}
+
+/* ===== Tables / rows ===== */
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;color:var(--ink-soft);font-size:13px;padding:6px 8px;border-bottom:1.5px solid var(--line);font-weight:900}
+.tbl td{padding:8px;border-bottom:1px solid #f3ede0;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.kv{display:grid;grid-template-columns:5.2em 1fr;gap:6px 10px;font-size:14.5px}
+.kv dt{color:var(--ink-soft);font-weight:900}
+.kv dd{word-break:break-word}
+.slot{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #eee5d4;font-size:14.5px}
+.slot:last-child{border-bottom:none}
+.slot b{flex:0 0 7.4em;white-space:nowrap;color:var(--ocean-deep);font-weight:900}
+.slot.s b{flex-basis:3.6em}
+.tbl.room td:nth-child(2),.tbl.room td:nth-child(4){white-space:nowrap}
+.slot span{flex:1}
+
+/* ===== Award (night & gold) ===== */
+.hero{border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,var(--night),var(--night-2));color:#fff;box-shadow:var(--shadow);margin-bottom:14px}
+.hero img{width:100%;height:auto}
+.hero .in{padding:16px}
+.hero h2{font-size:20px;font-weight:900;color:var(--sun);letter-spacing:.03em}
+.hero p{font-size:14.5px;opacity:.95;margin-top:4px}
+.hero .pill{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,201,77,.5)}
+.ev{display:flex;gap:12px;align-items:stretch;margin-bottom:10px}
+.ev .tm{flex:0 0 92px;border-radius:14px;background:linear-gradient(160deg,var(--night),var(--night-2));color:var(--sun);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 4px;font-weight:900;font-size:14.5px;line-height:1.35}
+.ev .tm small{font-size:12px;color:#d9e6ee;font-weight:700}
+.ev .bd{flex:1;background:#fff;border:1px solid #f0e9db;border-radius:14px;padding:10px 13px;box-shadow:0 2px 8px rgba(14,95,126,.06)}
+.ev .bd b{font-size:15px}
+.salon{padding:0;overflow:hidden}
+.salon .in{padding:14px 16px 16px}
+.salon .no{font-size:12.5px;font-weight:900;color:var(--gold);letter-spacing:.1em}
+.salon h3{font-size:17px;margin:2px 0 6px}
+.salon .tm{font-size:13.5px;font-weight:900;color:var(--ocean-deep);margin-bottom:8px}
+.salon .who{list-style:none;padding:0;margin:8px 0}
+.salon .who li{padding:6px 0 6px 12px;border-left:3px solid var(--sun);margin:4px 0;font-size:14.5px;line-height:1.5}
+.salon .who li small{display:block;color:var(--ink-soft);font-size:13px}
+.salon blockquote{font-size:14.5px;color:var(--ink);background:var(--gold-soft);border-radius:12px;padding:10px 12px}
+.search{width:100%;font-size:15px;font-weight:700;color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;background:#fffdf8;margin-bottom:8px}
+.search:focus{outline:none;border-color:var(--ocean)}
+.nom{display:flex;gap:10px;padding:9px 2px;border-bottom:1px dashed #eee5d4;font-size:14.5px}
+.nom:last-child{border-bottom:none}
+.nom .n{flex:0 0 1.9em;color:var(--gold);font-weight:900;text-align:right}
+.nom .c{font-weight:900}
+.nom .p{color:var(--ink-soft)}
+.empty{text-align:center;color:var(--ink-soft);padding:14px 0;font-weight:700}
+
+/* ===== Zoom images ===== */
+.zoom{display:block;width:100%;border:none;background:none;padding:0;cursor:zoom-in;position:relative;margin-bottom:12px}
+.zoom img{border-radius:14px;width:100%;height:auto;border:1px solid #f0e9db}
+.zoom::after{content:"🔍 點一下放大";position:absolute;right:8px;bottom:8px;background:rgba(23,40,58,.78);color:#fff;font-size:12.5px;font-weight:700;border-radius:99px;padding:2px 10px}
+#lb{position:fixed;inset:0;z-index:100;background:rgba(10,20,30,.92);display:none;overflow:auto;-webkit-overflow-scrolling:touch}
+#lb.on{display:block}
+#lb img{width:100%;max-width:900px;margin:56px auto 24px;touch-action:pinch-zoom}
+#lb .bar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));background:linear-gradient(rgba(10,20,30,.9),transparent);z-index:2}
+
+/* ===== Steps ===== */
+.steps{list-style:none;counter-reset:s;padding:0}
+.steps li{counter-increment:s;position:relative;padding:8px 0 8px 38px;font-size:14.5px;border-bottom:1px dashed #eee5d4}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;border-radius:50%;background:var(--ocean);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center}
+.steps.coral li::before{background:var(--coral)}
+
+/* ===== Checklist ===== */
+.ck{display:flex;align-items:center;gap:11px;padding:11px 4px;border-bottom:1px dashed #eee5d4;cursor:pointer;user-select:none;min-height:48px}
+.ck:last-child{border-bottom:none}
+.ck input{position:absolute;opacity:0;pointer-events:none}
+.ck .box{flex:0 0 24px;height:24px;border-radius:8px;border:2px solid #9fc4cf;background:#fff;display:flex;align-items:center;justify-content:center;transition:.2s;font-size:14px;color:#fff}
+.ck input:checked + .box{background:var(--coral);border-color:var(--coral)}
+.ck input:checked + .box::after{content:"✓";font-weight:900}
+.ck input:focus-visible + .box{outline:3px solid var(--sun);outline-offset:2px}
+.ck .t{font-size:15px;font-weight:700}
+.ck input:checked ~ .t{color:#8f8873;text-decoration:line-through}
+.ck .t small{display:block;font-size:13px;color:var(--ink-soft);font-weight:700}
+.ck input:checked ~ .t small{text-decoration:none}
+.prog{height:10px;background:#efe8d9;border-radius:99px;overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lagoon),var(--ocean));border-radius:99px;transition:width .4s}
+.prog-t{font-size:13.5px;font-weight:900;color:var(--ocean-deep)}
+
+/* ===== Currency ===== */
+.cx{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cx label{font-size:13px;font-weight:900;color:var(--ink-soft);display:block;margin-bottom:2px}
+.cx input{font-family:inherit;font-size:18px;font-weight:900;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;background:#fffdf8;width:100%}
+.cx input:focus{outline:none;border-color:var(--ocean)}
+.rate{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);font-weight:700;margin-top:10px;flex-wrap:wrap}
+.rate input{width:72px;font-family:inherit;font-size:14px;font-weight:900;border:1.5px solid var(--line);border-radius:8px;padding:3px 8px;text-align:center;background:#fffdf8}
+
+/* ===== Sheet (SOS) ===== */
+#sheet{position:fixed;inset:0;z-index:90;display:none;background:rgba(10,20,30,.5)}
+#sheet.on{display:block}
+#sheet .pane{position:absolute;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:var(--sand);border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:86vh;overflow:auto;animation:fadeUp .25s ease both}
+#sheet h3{font-size:18px;font-weight:900;color:var(--ocean-deep);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.close{border:none;background:#fff;border-radius:50%;width:34px;height:34px;font-size:16px;font-weight:900;color:var(--ink-soft);cursor:pointer;box-shadow:var(--shadow)}
+.call{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0e9db;border-radius:14px;padding:11px 14px;margin-bottom:8px;text-decoration:none;color:var(--ink);box-shadow:0 2px 8px rgba(14,95,126,.06)}
+.call .ic{flex:0 0 38px;height:38px;border-radius:12px;background:#e2f4f8;display:flex;align-items:center;justify-content:center;font-size:18px}
+.call b{display:block;font-size:15px}
+.call span{font-size:14px;color:var(--ink-soft)}
+.call.static{pointer-events:none}
+
+/* ===== Bottom nav ===== */
+nav{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid #eee4d3;display:flex;height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 20px rgba(14,95,126,.08)}
+nav button{flex:1;border:none;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:#5f7b86;font-size:12px;font-weight:900;transition:.2s;position:relative}
+nav button .ico{font-size:21px;line-height:1;transition:.2s;filter:grayscale(1);opacity:.7}
+nav button.on{color:var(--ocean-deep)}
+nav button.on .ico{filter:none;opacity:1;transform:translateY(-3px) scale(1.12)}
+nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px;border-radius:0 0 4px 4px;background:var(--coral)}
+.end{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin:20px 0 4px;position:relative;color:#fff}
+.end img{width:100%;height:auto;min-height:150px;object-fit:cover}
+.end p{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 12px;background:linear-gradient(transparent,rgba(14,95,126,.9));font-weight:900;font-size:15px;line-height:1.5}
+.foot{text-align:center;font-size:13px;color:#7c735f;margin:16px 0 6px;font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-bg" style="background-image:url(assets/cover.jpg)"></div>
+  <button class="sos" id="sosBtn" aria-haspopup="dialog">📞 急用</button>
+  <div class="h-sub">ISHIGAKI · 2026.12.01 – 12.04</div>
+  <h1 class="h-title">鬧鐘獎 <span class="x">×</span> Club Med<br>石垣島度假村 <span class="em">4 日</span></h1>
+  <div class="h-tags">
+    <span class="h-tag">🏝️ Club Med 石垣島</span>
+    <span class="h-tag">✈️ 台灣虎航</span>
+    <span class="h-tag cd" id="countdown">　</span>
+  </div>
+  <svg class="wave" viewBox="0 0 375 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 C60,26 120,2 187,12 C255,22 315,4 375,14 L375,26 L0,26 Z" fill="#faf5ea"/></svg>
+</header>
+
+<main>
+
+<!-- ================= 行程 ================= -->
+<section class="page active" id="page-days">
+  <div class="strip" id="dayStrip" role="tablist" aria-label="選擇日期"></div>
+  <div id="dayContent"></div>
+</section>
+
+<!-- ================= 鬧鐘獎 ================= -->
+<section class="page" id="page-awards">
+  <div class="hero">
+    <img src="assets/poster.jpg" alt="2026 第二屆鬧鐘獎主視覺" width="900" height="502">
+    <div class="in">
+      <h2>2026 第二屆鬧鐘獎</h2>
+      <p>鬧鐘響起來～掌聲也響起來！</p>
+      <div style="margin-top:8px">
+        <span class="pill">AI × 專業評審雙軌評選</span>
+        <span class="pill">50 位以上頂尖創作者</span>
+        <span class="pill">石垣島跨海盛典</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">📅 12/3（四）三場，一天看完</div>
+  <div class="ev">
+    <div class="tm">09:45<br>–12:20<small>09:30 開放入場</small></div>
+    <div class="bd"><b>知識沙龍</b><div class="muted">📍 沙灘（下雨改劇場）<br>無須提前報名，依時間到場即可</div></div>
+  </div>
+  <div class="ev">
+    <div class="tm">17:00<br>–19:00<small>16:30 開放入場</small></div>
+    <div class="bd"><b>鬧鐘獎頒獎典禮</b><div class="muted">📍 劇場（大廳進來，面對泳池的右手邊）</div></div>
+  </div>
+  <div class="ev">
+    <div class="tm">19:30<br>–21:00</div>
+    <div class="bd"><b>餐敘</b><div class="muted">📍 餐廳 ROOM3</div></div>
+  </div>
+
+  <div class="sec-title" id="salons">🎤 石垣島限定・知識沙龍</div>
+  <div class="note gold">三場都在 12/3 上午，沙灘舉行；下雨會調整到劇場。</div>
+
+  <div class="card salon">
+    <img class="ph" style="border-radius:0;margin:0" src="assets/salon1.jpg" alt="知識沙龍 01 鬧鐘丟掉：蔡承家 Jerry、蔡宇哲" loading="lazy" width="900" height="506">
+    <div class="in">
+      <div class="no">01・鬧鐘丟掉</div>
+      <h3>睡不好，問題可能從早上就開始了</h3>
+      <div class="tm">🕘 09:45 – 10:30</div>
+      <ul class="who">
+        <li><b>蔡宇哲</b><small>《哇賽心理學》創辦人、睡眠心理學家</small></li>
+        <li><b>蔡承家 Jerry</b><small>舒活適共同創辦人</small></li>
+      </ul>
+      <blockquote>你缺的可能不是時間，是好好睡一覺。但明明很累，為什麼還是不肯睡？重新聊聊我們與休息的關係。</blockquote>
+    </div>
+  </div>
+
+  <div class="card salon">
+    <img class="ph" style="border-radius:0;margin:0" src="assets/salon2.jpg" alt="知識沙龍 02 不理財沙龍：陳重銘、Dr. Selena 楊倩琳、郝旭烈" loading="lazy" width="900" height="506">
+    <div class="in">
+      <div class="no">02・不理財沙龍</div>
+      <h3>錢到底要存到多少，才敢開始好好生活？</h3>
+      <div class="tm">🕙 10:40 – 11:25</div>
+      <ul class="who">
+        <li><b>郝旭烈（郝哥）</b><small>《郝聲音》主持人、暢銷作家</small></li>
+        <li><b>陳重銘</b><small>不敗教主、投資理財暢銷作家</small></li>
+        <li><b>Dr. Selena 楊倩琳</b><small>《小資變有錢》主持人、理財作家</small></li>
+      </ul>
+      <blockquote>不教股票、不教致富，只問一句：錢到底要存到多少才敢開始好好生活？</blockquote>
+    </div>
+  </div>
+
+  <div class="card salon">
+    <img class="ph" style="border-radius:0;margin:0" src="assets/salon3.jpg" alt="知識沙龍 03 那些把我叫醒的鳥事：Jill、珊迪兔" loading="lazy" width="900" height="506">
+    <div class="in">
+      <div class="no">03・那些把我叫醒的鳥事</div>
+      <h3>微醺女子沙龍有些鳥事，後來都成了叫醒自己的鬧鐘</h3>
+      <div class="tm">🕦 11:35 – 12:20</div>
+      <ul class="who">
+        <li><b>珊迪兔</b><small>《精算媽咪的家計簿》主持人</small></li>
+        <li><b>Jill</b><small>《爛泥Jill式優雅》主持人</small></li>
+      </ul>
+      <blockquote>微醺聊聊失敗、低潮與人生翻車。那些當時很鳥的事，後來可能都成了叫醒自己的鬧鐘。</blockquote>
+    </div>
+  </div>
+
+  <div class="sec-title" id="ceremony">🏆 頒獎典禮流程</div>
+  <div class="card">
+    <div class="kv" style="margin-bottom:8px">
+      <dt>時間</dt><dd>12/3（四）17:00–19:00（16:30 開放入場）</dd>
+      <dt>地點</dt><dd>劇場（大廳進來，面對泳池的右手邊）</dd>
+    </div>
+    <div class="slot"><b>16:30–17:00</b><span><b style="display:inline;color:var(--ink)">鬧鐘獎星光大道｜貴賓進場</b><br>踏上星光紅毯，在鬧鐘獎主題背板前，留下今晚最閃耀的身影。</span></div>
+    <div class="slot"><b>17:00–19:00</b><span><b style="display:inline;color:var(--ink)">第二屆鬧鐘獎頒獎典禮｜星光微醺時光</b><br>共同見證年度創作者的榮耀時刻，為每一份精彩創作喝采。</span></div>
+    <div class="slot"><b>17:00–18:00</b><span><b style="display:inline;color:var(--ink)">雞尾酒與餐點</b><br>備有精緻雞尾酒與餐點，在美食與歡聚中共享這場年度盛典。</span></div>
+  </div>
+
+  <div class="sec-title" id="nominees">🎧 27 檔入圍 Podcast</div>
+  <div class="card">
+    <input class="search" id="nomSearch" type="search" placeholder="搜尋創作者或節目名稱…" aria-label="搜尋入圍名單">
+    <div id="nomList"></div>
+  </div>
+  <div class="note blue">聲音是很有力量的陪伴，每一集節目背後，都是創作者無數個深夜的企劃、錄音與剪輯。這次在藍天大海的見證下，一起共享這份榮耀。</div>
+</section>
+
+<!-- ================= 度假村 ================= -->
+<section class="page" id="page-resort">
+  <div class="strip" id="resortStrip" aria-label="快速跳到"></div>
+  <img class="ph" src="assets/terrace.jpg" alt="Club Med 石垣島度假村戶外座位區與海景" width="899" height="286">
+  <div class="note">★ 標示＝需額外付費。所有資訊僅供參考，以度假村現場公告為準。</div>
+
+  <details class="acc" id="r-basic" open>
+    <summary>📍 基本資訊</summary>
+    <div class="acc-body">
+      <dl class="kv">
+        <dt>電話</dt><dd><a href="tel:+81980844600">+81-980-84-4600</a>　傳真 +81-980-88-2880</dd>
+        <dt>地址</dt><dd id="addr">Ishigaki 1, Banchi, Kabira-Ishigaki City, 907-0453 Okinawa</dd>
+        <dt>電壓</dt><dd>100 伏特，Type B 插座</dd>
+        <dt>時差</dt><dd>比台灣快 1 小時</dd>
+        <dt>氣溫</dt><dd>平均攝氏 16 至 32 度</dd>
+        <dt>貨幣</dt><dd>日幣（台幣：日幣 ≈ 1：4.33，依當日匯率）<br><b>度假村不提供換幣服務</b></dd>
+        <dt>付款</dt><dd>村內使用日幣現金；信用卡可用 VISA、MASTER、AMEX、JCB</dd>
+        <dt>網路</dt><dd>主要活動區域與客房提供免費 Wi-Fi</dd>
+      </dl>
+      <div class="acts">
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Club%20Med%20Kabira%20Ishigaki%20Island%20907-0453">🧭 開地圖</a>
+        <button class="btn ghost" data-copy="Ishigaki 1, Banchi, Kabira-Ishigaki City, 907-0453 Okinawa">📋 複製地址（給計程車）</button>
+        <button class="btn ghost" data-go="info:money">💴 日幣速算</button>
+      </div>
+      <h4>Reception 櫃檯服務</h4>
+      <ul>
+        <li>07:00–23:00；房內電話請撥 <b>9</b></li>
+        <li>協助辦理：入住、退房、Club Med 通行證（Club Med Pass）、諮詢、明信片代寄、交通服務★、失物招領</li>
+        <li>房內互撥請在房號前加 <b>2</b>；撥外線請先聯繫櫃檯</li>
+        <li>緊急聯繫請直接撥 <b>1111</b></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc" id="r-room">
+    <summary>🛏️ 客房介紹</summary>
+    <div class="acc-body">
+      <h4>標準房</h4>
+      <img class="ph" src="assets/room-standard.jpg" alt="標準房" loading="lazy" width="880" height="550">
+      <table class="tbl room">
+        <tr><th>名稱</th><th>面積</th><th>亮點</th><th>人數</th></tr>
+        <tr><td>三人標準房</td><td>31 ㎡</td><td>陽台附家具</td><td>1–3</td></tr>
+        <tr><td>四人標準房</td><td>31 ㎡</td><td>陽台附家具</td><td>1–4</td></tr>
+        <tr><td>三人標準連通房</td><td>62 ㎡</td><td>陽台</td><td>4–6</td></tr>
+      </table>
+      <h4>設備</h4>
+      <ul><li>空調／暖氣（依季節調整）</li><li>嬰兒床（需提前預訂）、嬰兒用品組</li><li>電話、平面電視、網路</li><li>咖啡／茶沖泡用具、迷你吧、保險箱</li><li>Type B 規格插座／100–127 伏特</li></ul>
+      <h4>浴室</h4>
+      <ul><li>浴缸、獨立廁所、拖鞋、吹風機、化妝鏡</li><li>兒童備品：洗髮精、沐浴乳、身體乳液</li><li>盥洗用具（洗髮精、沐浴精及乳液…等）</li></ul>
+      <h4>服務</h4>
+      <ul><li>行李運送服務</li><li>洗衣服務（需額外付費）</li></ul>
+
+      <h4 style="margin-top:22px">麗緻房</h4>
+      <img class="ph" src="assets/room-deluxe.jpg" alt="麗緻房" loading="lazy" width="876" height="554">
+      <table class="tbl room">
+        <tr><th>名稱</th><th>面積</th><th>亮點</th><th>人數</th></tr>
+        <tr><td>海景三人麗緻房</td><td>31 ㎡</td><td>海景，陽台附家具</td><td>1–3</td></tr>
+        <tr><td>海景三人麗緻連通房</td><td>62 ㎡</td><td>海景，陽台附家具</td><td>4–6</td></tr>
+        <tr><td>四人麗緻房－帶庭園露臺</td><td>31 ㎡</td><td>花園側，露台附家具</td><td>1–4</td></tr>
+        <tr><td>三人麗緻房－帶庭園露臺</td><td>31 ㎡</td><td>花園側，露台附家具</td><td>1–3</td></tr>
+        <tr><td>三人麗緻連通房－帶庭園</td><td>62 ㎡</td><td>花園側，露台附家具</td><td>4–6</td></tr>
+      </table>
+      <h4>設備</h4>
+      <ul><li>空調／暖氣（依季節調整）</li><li>嬰兒床（需提前預訂）、嬰兒用品組</li><li>電話、平面電視、網路</li><li>咖啡／茶沖泡用具、熨斗組、保險箱、雨傘</li><li>Type B 規格插座／100–127 伏特</li></ul>
+      <h4>浴室</h4>
+      <ul><li>浴缸、獨立廁所、拖鞋、吹風機、化妝鏡</li><li>兒童備品：洗髮精、沐浴乳、身體乳液</li><li>盥洗用具（洗髮精、沐浴精及乳液…等）</li></ul>
+      <h4>服務</h4>
+      <ul><li>行李運送服務、洗衣服務（需額外付費）</li><li>海灘毛巾</li><li>迷你吧（無酒精飲品）— 抵達時提供</li></ul>
+      <p class="muted" style="margin-top:10px">實際分配的房型，以入住時為準。</p>
+    </div>
+  </details>
+
+  <details class="acc" id="r-food">
+    <summary>🍽️ 餐廳與吧台</summary>
+    <div class="acc-body">
+      <img class="ph" src="assets/restaurant.jpg" alt="主餐廳" loading="lazy" width="1000" height="413">
+      <h4>主餐廳</h4>
+      <div class="slot"><b>07:00–09:30</b><span>早餐</span></div>
+      <div class="slot"><b>11:45–13:45</b><span>午餐</span></div>
+      <div class="slot"><b>14:00–15:30</b><span>輕食</span></div>
+      <div class="slot"><b>18:30–20:30</b><span>晚餐</span></div>
+      <p class="muted">另有石垣牛排與海鮮餐★，需當天 13:00 前向接待櫃台預訂。</p>
+      <h4>Tingara 主吧台（09:00–00:00）</h4>
+      <div class="slot"><b>09:45–10:45</b><span>快樂可頌</span></div>
+      <div class="slot"><b>11:00–12:00</b><span>點心時間</span></div>
+      <div class="slot"><b>15:30–17:00</b><span>下午茶</span></div>
+      <div class="slot"><b>18:00–19:00</b><span>開胃小點</span></div>
+      <div class="slot"><b>21:30–23:00</b><span>消夜</span></div>
+      <p class="muted">另有手工麵包★，需前一天向吧台預訂。</p>
+      <div class="note" style="margin-top:12px">💳 現場多單點的牛排、龍蝦、特殊酒單，都要在 12/3 晚上 20:00 前於櫃台結清。</div>
+    </div>
+  </details>
+
+  <details class="acc" id="r-land">
+    <summary>🎾 陸上活動</summary>
+    <div class="acc-body">
+      <img class="ph" src="assets/tennis.jpg" alt="網球" loading="lazy" width="979" height="247">
+      <p class="muted" style="margin-bottom:6px">瑜珈課需年滿 8 歲；健身課程需年滿 16 歲；請務必穿運動鞋。</p>
+      <h4>健身學校（06:00–00:00 開放）</h4>
+      <div class="slot"><b>08:00</b><span>晨間健走（接待櫃台集合）</span></div>
+      <div class="slot"><b>08:00</b><span>初級瑜珈（健身房／週三無課）</span></div>
+      <div class="slot"><b>10:00</b><span>進階瑜珈（健身房／週三無課）</span></div>
+      <div class="slot"><b>12:00</b><span>帶動跳</span></div>
+      <div class="slot"><b>14:00</b><span>皮拉提斯（週二、三、五）</span></div>
+      <div class="slot"><b>14:30</b><span>運動挑戰</span></div>
+      <div class="slot"><b>15:00</b><span>肌耐力訓練（健身房）</span></div>
+      <div class="slot"><b>16:00</b><span>有氧／跳舞課程</span></div>
+      <div class="slot"><b>17:00</b><span>初中級瑜珈（週三無課）</span></div>
+      <div class="slot"><b>17:00</b><span>運動遊戲</span></div>
+      <h4>網球／壁球</h4>
+      <div class="slot"><b>08:30</b><span>網球高階課程</span></div>
+      <div class="slot"><b>09:30</b><span>網球中階課程</span></div>
+      <div class="slot"><b>10:30</b><span>網球初階課程</span></div>
+      <div class="slot"><b>16:00</b><span>網球比賽（每週一、三、六）</span></div>
+      <p class="muted">週四無網球課程。壁球場 24 小時開放，需年滿 11 歲。</p>
+      <h4>健身房</h4>
+      <p>06:00–00:00｜須年滿 18 歲。運動前請勿飲酒，並穿著運動鞋。</p>
+      <h4>射箭場（09:00–11:50／14:15–17:00）｜須年滿 6 歲</h4>
+      <div class="slot"><b>09:00–10:00</b><span>兒童俱樂部（6–10 歲）</span></div>
+      <div class="slot"><b>10:00–11:00</b><span>親子時間（6 歲以上）</span></div>
+      <div class="slot"><b>11:00–12:00</b><span>成人時間（12 歲以上）</span></div>
+      <div class="slot"><b>15:00–16:00</b><span>親子時間（6 歲以上）</span></div>
+      <div class="slot"><b>16:00–17:00</b><span>成人時間（12 歲以上）</span></div>
+      <h4>登山自行車｜需年滿 11 歲、有騎乘能力</h4>
+      <div class="slot"><b>09:00</b><span>初級課程</span></div>
+      <div class="slot"><b>10:00</b><span>進階課程</span></div>
+    </div>
+  </details>
+
+  <details class="acc" id="r-water">
+    <summary>🌊 水上活動</summary>
+    <div class="acc-body">
+      <img class="ph" src="assets/water.jpg" alt="風浪板" loading="lazy" width="890" height="283">
+      <h4>水上活動／海灘小屋</h4>
+      <div class="slot"><b>09:00–12:00</b><span>上午場</span></div>
+      <div class="slot"><b>14:00–17:00</b><span>下午場</span></div>
+      <div class="slot"><b>09:00–17:00</b><span>海灘救生員執勤</span></div>
+      <h4>浮潛｜需年滿 8 歲，請務必穿救生衣</h4>
+      <ul><li>自由浮潛</li><li>初學者浮潛課程｜出海浮潛（<b>需前一天預約</b>；出海需通過 25 公尺游泳測試）</li></ul>
+      <h4>風浪板｜需年滿 8 歲</h4>
+      <ul><li>10:00／15:00 初學者課程（<b>初級課程需前一天預約</b>）</li><li>自由練習</li></ul>
+      <h4>泳池（09:00–18:00）</h4>
+      <ul><li>無救生員值勤，請務必注意安全</li><li>父母務必陪同孩童</li></ul>
+      <div class="note blue" style="margin-top:12px">📝 預約櫃檯：每天 18:30–19:00，劇場前。活動視當日海浪安全性及潮水高度而開放。</div>
+    </div>
+  </details>
+
+  <details class="acc" id="r-leisure">
+    <summary>🏊 泳池與休閒</summary>
+    <div class="acc-body">
+      <img class="ph" src="assets/pool.jpg" alt="主泳池" loading="lazy" width="700" height="560">
+      <h4>主泳池（戶外）</h4>
+      <p>共有 2 個戶外泳池，其中一個為較淺的兒童泳池，兒童下水須由家人陪同。<br>深度（最淺／最深）0.5 公尺／1.1 公尺</p>
+      <img class="ph" style="margin-top:14px" src="assets/kidspool.jpg" alt="兒童俱樂部泳池" loading="lazy" width="700" height="560">
+      <h4>兒童俱樂部泳池</h4>
+      <p>於兒童俱樂部開放時間開放。<br>深度（最淺／最深）0.3 公尺／0.8 公尺</p>
+      <img class="ph" style="margin-top:14px" src="assets/archery.jpg" alt="射箭" loading="lazy" width="720" height="462">
+      <img class="ph" src="assets/trapeze.jpg" alt="空中飛人" loading="lazy" width="700" height="431">
+    </div>
+  </details>
+
+  <details class="acc" id="r-kids">
+    <summary>🧒 兒童俱樂部</summary>
+    <div class="acc-body">
+      <img class="ph" src="assets/kids.jpg" alt="兒童俱樂部" loading="lazy" width="742" height="235">
+      <table class="tbl">
+        <tr><th>年齡</th><th>名稱與活動</th></tr>
+        <tr><td>2–3 歲</td><td><b>幼兒俱樂部</b>★<br>寶寶運動場，隨時開放</td></tr>
+        <tr><td>4–10 歲</td><td><b>兒童俱樂部</b><br>趣味活動、射箭、空中飛人、網球（團體課程），隨時開放</td></tr>
+        <tr><td>11–13 歲</td><td><b>青少年俱樂部</b><br>最新課程、射箭、空中飛人、網球（團體課程），隨時開放</td></tr>
+        <tr><td>14–17 歲</td><td><b>青少年俱樂部</b><br>最新課程、射箭、空中飛人、網球（團體課程），隨時開放</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="acc" id="r-spa">
+    <summary>🌺 村外遊與 SPA</summary>
+    <div class="acc-body">
+      <h4>村外遊★</h4>
+      <ul><li>09:00–12:00／16:00–19:00</li><li>需額外付費，<b>請於前一天預約行程</b></li></ul>
+      <h4>SPA 按摩★</h4>
+      <ul><li>10:00–18:00，SPA 櫃檯</li><li>需額外付費</li></ul>
+    </div>
+  </details>
+
+  <details class="acc" id="r-app">
+    <summary>📲 My Club Med APP</summary>
+    <div class="acc-body">
+      <p>建議入住前先下載，就能即時掌握服裝主題、活動項目、度假村地圖與實用資訊。</p>
+      <div class="acts" style="margin-top:10px">
+        <a class="btn" target="_blank" rel="noopener" href="https://apps.apple.com/tw/app/my-club-med/id1666945596">🍎 App Store</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.clubmed.mcm&hl=en_US&pli=1">▶ Google Play</a>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 須知 ================= -->
+<section class="page" id="page-info">
+  <div class="strip" id="infoStrip" aria-label="快速跳到"></div>
+
+  <div class="sec-title" id="i-arrive">🚐 抵達石垣島・報到流程</div>
+  <div class="card">
+    <button class="zoom" data-zoom="assets/counter.jpg" aria-label="放大查看 Club Med 櫃檯位置圖"><img src="assets/counter.jpg" alt="石垣島機場 Club Med 接待櫃檯位置" loading="lazy" width="760" height="973"></button>
+    <ol class="steps">
+      <li><b>出關後往大廳前方走</b>，找窗邊的白色長櫃檯。</li>
+      <li>櫃檯旁有 <b>Club Med 立牌</b>；左邊是旅遊資訊櫃檯。</li>
+      <li>向工作人員出示 <b>Club Med 訂單或姓名</b>，詢問接駁車安排。</li>
+      <li>抵達度假村後，Club Med 工作人員統一辦理入住登記並說明入住資訊。</li>
+      <li>之後即可使用村內設施與活動，<b>行李由度假村協助托運至客房</b>。</li>
+    </ol>
+    <p class="muted" style="margin-top:8px">接駁車僅提供機場與度假村之間的去程、回程，時間依航班安排、無法更改。不需接駁者，請提前告知預計入住時間與交通方式（包車需提供車牌號碼）。</p>
+  </div>
+
+  <div class="sec-title" id="i-leave">🧳 離村流程</div>
+  <div class="card">
+    <ol class="steps coral">
+      <li><b>12/3（四）20:00 前</b>，到櫃台確認房帳是否結清（含現場多單點的牛排、龍蝦、特殊酒單等）。</li>
+      <li><b>12/4（五）06:00</b> 在房門口收行李；超過時間需自行拿到前台。</li>
+      <li>約 <b>07:00</b> 搭車離開度假村（實際以現場公告為準）。</li>
+    </ol>
+    <div class="note" style="margin:10px 0 0">建議攜帶實體信用卡，部分活動需額外付費，消費當下結清，退房更快。</div>
+  </div>
+
+  <div class="sec-title" id="i-rules">📌 村內小提醒</div>
+  <div class="card">
+    <ul style="padding-left:1.1em">
+      <li>村內<b>無須給任何小費</b>（行李費、床頭費等）。</li>
+      <li>首日客房內有每人一瓶礦泉水；請重複使用空瓶，到吧台或飲水機補水。</li>
+      <li>依當地法規，<b>未滿 20 歲不得購買及飲用酒精飲品</b>；入住期間請隨時配戴識別手環。</li>
+      <li>機上餐食無法事先預訂，僅接受機上購買。</li>
+      <li>行李：託運 20 公斤、手提 10 公斤。</li>
+    </ul>
+  </div>
+
+  <div class="sec-title" id="i-vjw">🛂 Visit Japan Web</div>
+  <div class="card">
+    <p>入境審查、海關申報、退稅手續都能先在線上辦好，到日本出示 QR Code 即可，省下現場排隊時間。</p>
+    <ol class="steps" style="margin:8px 0">
+      <li>進入官網 vjw-lp.digital.go.jp</li>
+      <li>建立帳號（使用 Email 註冊）</li>
+      <li>填寫個人資訊與行程資料</li>
+      <li>完成登錄，出發前先登入確認內容</li>
+    </ol>
+    <p class="muted">小提醒：出發前完成登錄；個人資訊請如實填寫；部分機場與退稅方式可能不同，請留意現場指示。</p>
+    <div class="acts" style="margin:10px 0">
+      <a class="btn" target="_blank" rel="noopener" href="https://vjw-lp.digital.go.jp">🌐 開啟官網</a>
+    </div>
+    <button class="zoom" data-zoom="assets/info-vjw.jpg" aria-label="放大查看 Visit Japan Web 圖解"><img src="assets/info-vjw.jpg" alt="Visit Japan Web 圖解" loading="lazy" width="1000" height="1094"></button>
+  </div>
+
+  <div class="sec-title" id="i-security">🛫 機場安檢</div>
+  <div class="card">
+    <ul style="padding-left:1.1em;margin-bottom:10px">
+      <li><b>務必隨身：</b>行動電源、鋰電池、打火機（限帶 1 個）、護照與證件。</li>
+      <li><b>液體、膠狀、噴霧類：</b>單罐 100ml 以下、總量 1 公升以內，裝進 20×20 公分透明夾鏈袋。</li>
+      <li><b>建議隨身：</b>貴重物品、個人藥品（需處方箋）、摺疊傘、3C 產品。</li>
+      <li>嬰兒副食品、奶粉、液體藥品需申報，不受 100ml 限制。</li>
+      <li>水壺先清空，安檢後才可裝水；農產品、水果請在機上吃完。</li>
+      <li>安檢前先脫下皮帶、帽子，3C 產品先取出，通關更快。</li>
+      <li>行李託運後，請確認已通過 X 光機檢查再離開。</li>
+    </ul>
+    <button class="zoom" data-zoom="assets/info-security.jpg" aria-label="放大查看安檢小叮嚀"><img src="assets/info-security.jpg" alt="機場安檢小叮嚀" loading="lazy" width="504" height="765"></button>
+    <button class="zoom" data-zoom="assets/info-quick.jpg" aria-label="放大查看飛航安全檢查快易通"><img src="assets/info-quick.jpg" alt="飛航安全檢查快易通" loading="lazy" width="580" height="801"></button>
+  </div>
+
+  <div class="sec-title" id="i-tax">🛍️ 日本免稅新制（2026/11/1 起）</div>
+  <div class="card">
+    <div class="note gold">一句話：先付含稅價 → 出境海關確認 → 店家退款。</div>
+    <ol class="steps">
+      <li>購物時出示護照，確認店家有提供免稅／退稅服務。</li>
+      <li>結帳先付含稅價，依店家指示設定退款方式。</li>
+      <li>出境當天，<b>在航空公司托運行李前</b>，先到海關辦理確認；商品必須能取出供查驗。</li>
+      <li>海關確認商品確實攜出日本後，由店家或退稅業者辦理退款。</li>
+    </ol>
+    <h4 style="margin:12px 0 4px;color:var(--ocean-deep)">門檻與規則</h4>
+    <ul style="padding-left:1.1em">
+      <li>同一店家、同一天、未稅合計滿 5,000 日圓。</li>
+      <li>須於購買日起 90 天內出境；一般商品與消耗品不再分類。</li>
+      <li>消耗品特殊密封包裝取消；商品須由本人攜帶出境，出境前不可吃掉、用掉或丟棄。</li>
+      <li>新制不是結帳當下直接折抵；退款方式與時間依店家／退稅業者規定。</li>
+      <li>不是每間店都有退稅服務，購買前先確認。</li>
+    </ul>
+    <p class="muted" style="margin:8px 0">依日本官方 2026 年免稅制度公告整理；實際流程依店家及出境機場現場指示為準。</p>
+    <button class="zoom" data-zoom="assets/info-tax.jpg" aria-label="放大查看免稅新制懶人包"><img src="assets/info-tax.jpg" alt="日本免稅新制懶人包" loading="lazy" width="900" height="1350"></button>
+  </div>
+
+  <div class="sec-title" id="money">💴 日幣速算</div>
+  <div class="card">
+    <div class="cx">
+      <div><label for="jpy">日幣 ¥</label><input id="jpy" type="number" inputmode="decimal" min="0" placeholder="例如 3000"></div>
+      <div><label for="twd">台幣 NT$</label><input id="twd" type="number" inputmode="decimal" min="0" placeholder="約"></div>
+    </div>
+    <div class="rate">匯率：NT$ 1 ＝ ¥ <input id="rate" type="number" inputmode="decimal" step="0.01" min="0.01" aria-label="匯率（1 台幣兌多少日幣）"> <span>（手冊參考 4.33，請依當日匯率調整）</span></div>
+  </div>
+
+  <div class="sec-title" id="i-contact">☎️ 聯絡方式</div>
+  <div class="card">
+    <a class="call" href="tel:+81980844600"><span class="ic">🏨</span><div><b>Club Med 石垣島</b><span>+81-980-84-4600</span></div></a>
+    <div class="call static"><span class="ic">🛎️</span><div><b>村內櫃檯（07:00–23:00）</b><span>房內電話撥 9；緊急撥 1111</span></div></div>
+    <div class="call static"><span class="ic">🧑‍💼</span><div><b>五福旅行社聯絡人</b><span>電話請見行前收到的行程確認表</span></div></div>
+    <p class="muted">五福旅行社 × 盛德好</p>
+  </div>
+</section>
+
+<!-- ================= 清單 ================= -->
+<section class="page" id="page-check">
+  <div class="card">
+    <div class="prog-t" id="ckText">已完成 0 / 0</div>
+    <div class="prog"><i id="ckBar"></i></div>
+    <p class="muted">勾選會記在你的手機上，不會傳給任何人。</p>
+  </div>
+  <div id="ckBody"></div>
+  <div class="sec-title">🗓️ 加入手機行事曆</div>
+  <div class="card">
+    <p class="muted" style="margin-bottom:10px">航班、沙龍、頒獎典禮、餐敘與離村時間，一次放進行事曆（含提醒）。</p>
+    <button class="btn coral block" id="calAll">📅 下載全部行程 .ics</button>
+  </div>
+  <div class="end">
+    <img src="assets/beach.jpg" alt="石垣島海岸與度假村" loading="lazy" width="800" height="532">
+    <p>這一次，鬧鐘獎把創作者、知識與驚喜一起搬上島。</p>
+  </div>
+</section>
+
+<div class="foot">🌊 把行程交給手冊，把時間留給海與好朋友。<br>五福旅遊 × 盛德好</div>
+</main>
+
+<nav aria-label="主選單">
+  <button class="on" data-page="days"><span class="ico">🗓️</span>行程</button>
+  <button data-page="awards"><span class="ico">🏆</span>鬧鐘獎</button>
+  <button data-page="resort"><span class="ico">🏝️</span>度假村</button>
+  <button data-page="info"><span class="ico">📋</span>須知</button>
+  <button data-page="check"><span class="ico">✅</span>清單</button>
+</nav>
+
+<div id="sheet" role="dialog" aria-modal="true" aria-label="急用聯絡">
+  <div class="pane">
+    <h3>📞 急用聯絡 <button class="close" id="sheetClose" aria-label="關閉">✕</button></h3>
+    <div class="call static"><span class="ic">🧑‍💼</span><div><b>五福旅行社聯絡人</b><span>電話請見行前收到的行程確認表</span></div></div>
+    <a class="call" href="tel:+81980844600"><span class="ic">🏨</span><div><b>Club Med 石垣島</b><span>+81-980-84-4600</span></div></a>
+    <div class="call static"><span class="ic">🛎️</span><div><b>村內櫃檯（07:00–23:00）</b><span>房內電話撥 9</span></div></div>
+    <div class="call static"><span class="ic">🚨</span><div><b>村內緊急聯繫</b><span>房內電話直接撥 1111</span></div></div>
+    <div class="acts" style="margin-top:6px">
+      <button class="btn ghost" data-copy="Ishigaki 1, Banchi, Kabira-Ishigaki City, 907-0453 Okinawa">📋 複製度假村地址</button>
+    </div>
+  </div>
+</div>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="圖片放大">
+  <div class="bar"><a class="btn ghost" id="lbOpen" target="_blank" rel="noopener">開啟原圖</a><button class="close" id="lbClose" aria-label="關閉">✕</button></div>
+  <img id="lbImg" alt="">
+</div>
+
+<script>
+/* ============ 工具 ============ */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const G = q => 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(q);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const urlNow = new URLSearchParams(location.search).get('now');      /* 測試用：?now=2026-12-03T10:00+09:00 */
+const NOW = () => urlNow ? new Date(urlNow) : new Date();
+
+/* ============ 行程資料 ============ */
+const DAYS = [
+{d:'D1', key:'2026-12-01', date:'12/1 二', wd:2, title:'✈️ 出發日・飛往石垣島', sub:'凌晨出門，睜開眼就是海',
+ tip:'🌙 04:05 在桃園機場台灣虎航櫃檯報到。前一晚早點睡，證件與行動電源先放進隨身包。',
+ act:['14:00','24:00'], actLabel:'抵達度假村後，今天還能玩的',
+ items:[
+ {t:'04:05', at:'2026-12-01T04:05+08:00', n:'🛄 桃園機場第一航廈・台灣虎航櫃檯報到', m:'建議起飛前 2.5 小時抵達。託運 20 公斤、手提 10 公斤。', map:'桃園國際機場第一航廈', hl:1,
+   cal:{s:'2026-12-01T04:05+08:00', e:'2026-12-01T06:05+08:00', title:'桃園機場報到（台灣虎航櫃檯）', loc:'桃園國際機場第一航廈'}},
+ {t:'06:35', at:'2026-12-01T06:35+08:00', n:'✈️ 起飛 IT 736　桃園 → 石垣島', m:'機上餐食無法預訂，僅接受機上購買。',
+   cal:{s:'2026-12-01T06:35+08:00', e:'2026-12-01T08:35+09:00', title:'IT736 桃園→石垣島', loc:'桃園國際機場'}},
+ {t:'08:35', at:'2026-12-01T08:35+09:00', n:'🏝️ 抵達石垣島機場', m:'日本當地時間（比台灣快 1 小時）。出關後往大廳前方，找窗邊白色長櫃檯。', hl:1, go:['info','i-arrive','看櫃檯位置圖']},
+ {t:'接著', n:'🚐 向 Club Med 接待人員詢問接駁', m:'出示 Club Med 訂單或姓名，依指示搭接駁車前往度假村。'},
+ {t:'接著', n:'📝 度假村統一辦理入住登記', m:'聽完入住說明就能使用村內設施與活動，行李由度假村協助托運至客房。'},
+ {t:'15:00', at:'2026-12-01T15:00+09:00', n:'🔑 客房入住時間（約）', m:'房間約 15:00 可入住。'},
+ {t:'18:30', at:'2026-12-01T18:30+09:00', n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'},
+ {t:'18:30', at:'2026-12-01T18:30+09:00', n:'📝 想玩風浪板初學、出海浮潛？', m:'需前一天預約：18:30–19:00 到劇場前的水上活動報名櫃檯。', go:['resort','r-water','看水上活動']}
+ ]},
+{d:'D2', key:'2026-12-02', date:'12/2 三', wd:3, title:'🌴 自由放鬆日', sub:'沒有團體行程，海邊、泳池、課程，照自己的節奏',
+ tip:'📲 每日課程以 My Club Med APP 與村內公告為準。想體驗的活動，先看哪些要預約。',
+ act:['08:00','24:00'], actLabel:'今天度假村有這些活動',
+ items:[
+ {t:'07:00', at:'2026-12-02T07:00+09:00', n:'🥐 主餐廳早餐', m:'07:00–09:30'},
+ {t:'09:00', at:'2026-12-02T09:00+09:00', n:'🏖️ 海灘小屋開放', m:'上午場 09:00–12:00；海灘救生員 09:00–17:00 執勤。', hl:1, go:['resort','r-water','看水上活動']},
+ {t:'10:00', at:'2026-12-02T10:00+09:00', n:'🌺 SPA 櫃檯營業', m:'10:00–18:00', c:'需額外付費', go:['resort','r-spa','看村外遊與 SPA']},
+ {t:'11:45', at:'2026-12-02T11:45+09:00', n:'🍽️ 午餐', m:'主餐廳 11:45–13:45；輕食 14:00–15:30'},
+ {t:'14:00', at:'2026-12-02T14:00+09:00', n:'🌊 海灘小屋下午場', m:'14:00–17:00'},
+ {t:'15:30', at:'2026-12-02T15:30+09:00', n:'🍰 Tingara 吧台下午茶', m:'15:30–17:00'},
+ {t:'18:30', at:'2026-12-02T18:30+09:00', n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'},
+ {t:'21:30', at:'2026-12-02T21:30+09:00', n:'🌙 Tingara 吧台消夜', m:'21:30–23:00'}
+ ]},
+{d:'D3', key:'2026-12-03', date:'12/3 四', wd:4, award:1, title:'🏆 鬧鐘獎日', sub:'知識沙龍 → 頒獎典禮 → 餐敘',
+ tip:'🎖️ 今天是主場。中午到傍晚有一段空檔，留給午休、看海，或慢慢換上晚間的裝扮。',
+ act:['12:30','16:30'], actLabel:'沙龍後到典禮前的空檔，可以玩',
+ items:[
+ {t:'07:00', at:'2026-12-03T07:00+09:00', n:'🥐 主餐廳早餐', m:'07:00–09:30'},
+ {t:'09:30', at:'2026-12-03T09:30+09:00', n:'🚪 知識沙龍開放入場', m:'沙灘（下雨調整至劇場）。無須報名，依時間到場。'},
+ {t:'09:45', at:'2026-12-03T09:45+09:00', n:'🎤 沙龍 01｜睡不好，問題可能從早上就開始了', m:'蔡宇哲 × 蔡承家 Jerry（09:45–10:30）', hl:1, go:['awards','salons','看沙龍介紹'],
+   cal:{s:'2026-12-03T09:45+09:00', e:'2026-12-03T10:30+09:00', title:'鬧鐘獎知識沙龍 01：睡不好，問題可能從早上就開始了', loc:'Club Med 石垣島 沙灘（下雨改劇場）'}},
+ {t:'10:40', at:'2026-12-03T10:40+09:00', n:'🎤 沙龍 02｜錢到底要存到多少，才敢開始好好生活？', m:'郝旭烈（郝哥）・陳重銘・Dr. Selena 楊倩琳（10:40–11:25）', hl:1,
+   cal:{s:'2026-12-03T10:40+09:00', e:'2026-12-03T11:25+09:00', title:'鬧鐘獎知識沙龍 02：不理財沙龍', loc:'Club Med 石垣島 沙灘（下雨改劇場）'}},
+ {t:'11:35', at:'2026-12-03T11:35+09:00', n:'🎤 沙龍 03｜微醺女子沙龍有些鳥事，後來都成了叫醒自己的鬧鐘', m:'珊迪兔・Jill（11:35–12:20）', hl:1,
+   cal:{s:'2026-12-03T11:35+09:00', e:'2026-12-03T12:20+09:00', title:'鬧鐘獎知識沙龍 03：那些把我叫醒的鳥事', loc:'Club Med 石垣島 沙灘（下雨改劇場）'}},
+ {t:'12:20', at:'2026-12-03T12:20+09:00', n:'☀️ 沙龍結束・午餐與自由時間', m:'主餐廳午餐到 13:45，輕食 14:00–15:30。'},
+ {t:'16:30', at:'2026-12-03T16:30+09:00', n:'✨ 星光大道・貴賓進場', m:'劇場（大廳進來，面對泳池的右手邊）。踏上星光紅毯，在主題背板前留影。', hl:1, go:['awards','ceremony','看典禮流程']},
+ {t:'17:00', at:'2026-12-03T17:00+09:00', n:'🏆 第二屆鬧鐘獎頒獎典禮', m:'17:00–19:00｜17:00–18:00 備有精緻雞尾酒與餐點。', hl:1,
+   cal:{s:'2026-12-03T17:00+09:00', e:'2026-12-03T19:00+09:00', title:'第二屆鬧鐘獎頒獎典禮', loc:'Club Med 石垣島 劇場'}},
+ {t:'19:00', at:'2026-12-03T19:00+09:00', n:'💳 順路到櫃台結清房帳', m:'離村前一晚 20:00 前需結清，含現場多單點的牛排、龍蝦、特殊酒單。典禮到餐敘中間有 30 分鐘。', go:['info','i-leave','看離村流程']},
+ {t:'19:30', at:'2026-12-03T19:30+09:00', n:'🥂 餐敘', m:'餐廳 ROOM3（19:30–21:00）', hl:1,
+   cal:{s:'2026-12-03T19:30+09:00', e:'2026-12-03T21:00+09:00', title:'鬧鐘獎餐敘', loc:'Club Med 石垣島 餐廳 ROOM3'}},
+ {t:'21:00', at:'2026-12-03T21:00+09:00', n:'🧳 回房整理行李', m:'明早 06:00 房門口收行李。護照、行動電源、貴重物品與免稅品，留在隨身包。'}
+ ]},
+{d:'D4', key:'2026-12-04', date:'12/4 五', wd:5, title:'🧳 離村・返台日', sub:'很早出發，前一晚都備妥，今天只管慢慢走',
+ tip:'🛍️ 想辦免稅退稅？商品先不要放進託運行李，先完成海關確認，再托運。',
+ items:[
+ {t:'06:00', at:'2026-12-04T06:00+09:00', n:'🧳 房門口收行李・退房', m:'06:00 前把行李放在房門口；超過時間需自行拿至前台。', hl:1,
+   cal:{s:'2026-12-04T06:00+09:00', e:'2026-12-04T06:30+09:00', title:'房門口收行李・退房', loc:'Club Med 石垣島'}},
+ {t:'07:00', at:'2026-12-04T07:00+09:00', n:'🚐 搭車離開度假村（約）', m:'實際以度假村現場公告為準。'},
+ {t:'09:25', at:'2026-12-04T09:25+09:00', n:'✈️ 起飛 IT 737　石垣島 → 桃園', m:'機上餐食僅接受機上購買。', hl:1,
+   cal:{s:'2026-12-04T09:25+09:00', e:'2026-12-04T09:35+08:00', title:'IT737 石垣島→桃園', loc:'石垣空港'}},
+ {t:'09:35', at:'2026-12-04T09:35+08:00', n:'🏠 抵達桃園機場', m:'台灣時間。辛苦了，回家慢慢休息。'}
+ ]}
+];
+
+/* 度假村固定活動（來源：手冊 P16–17）；no＝該星期不開，only＝只有該星期開；0=日…6=六 */
+const ACT = [
+ {t:'08:00',n:'晨間健走',p:'接待櫃台集合'},
+ {t:'08:00',n:'初級瑜珈',p:'健身房',no:[3]},
+ {t:'08:30',n:'網球高階課程',no:[4]},
+ {t:'09:00',n:'射箭・兒童時間',tag:'6–10 歲'},
+ {t:'09:00',n:'登山自行車初級課程',tag:'11 歲以上'},
+ {t:'09:00',n:'水上活動／海灘小屋（至 12:00）'},
+ {t:'09:30',n:'網球中階課程',no:[4]},
+ {t:'10:00',n:'進階瑜珈',p:'健身房',no:[3]},
+ {t:'10:00',n:'風浪板初學者課程',tag:'需前一天預約',book:1},
+ {t:'10:00',n:'射箭・親子時間',tag:'6 歲以上'},
+ {t:'10:00',n:'登山自行車進階課程',tag:'11 歲以上'},
+ {t:'10:30',n:'網球初階課程',no:[4]},
+ {t:'11:00',n:'射箭・成人時間',tag:'12 歲以上'},
+ {t:'12:00',n:'帶動跳'},
+ {t:'14:00',n:'皮拉提斯',only:[2,3,5]},
+ {t:'14:00',n:'水上活動／海灘小屋（至 17:00）'},
+ {t:'14:30',n:'運動挑戰'},
+ {t:'15:00',n:'肌耐力訓練',p:'健身房'},
+ {t:'15:00',n:'風浪板初學者課程',tag:'需前一天預約',book:1},
+ {t:'15:00',n:'射箭・親子時間',tag:'6 歲以上'},
+ {t:'16:00',n:'有氧／跳舞課程'},
+ {t:'16:00',n:'網球比賽',only:[1,3,6]},
+ {t:'16:00',n:'射箭・成人時間',tag:'12 歲以上'},
+ {t:'17:00',n:'初中級瑜珈',no:[3]},
+ {t:'17:00',n:'運動遊戲'}
+];
+
+const NOMS = [
+['安迪','《五吉郎》'],['蔡宇哲 & Nana','《哇賽心理學》'],['施雅棠','《夢想家說股事》'],['梁哲維','《OHMYBOOK｜哲維說書》'],
+['珊迪兔','《精算媽咪的家計簿》'],['林楊程 Hank大叔','《能量黑客》'],['胡咪老師 & Vito大叔','《分手的99個理由》'],['楊月娥 & 盧妍蓁','《楊肉盧》'],
+['CherryCoco 櫻桃可可','《加班當爸媽》'],['GK爸爸','《GK爸爸原創故事繪本》'],['布姐','《布姐的沙發》'],['莫菲穿搭','《【莫轉台】-試穿新人生》'],
+['蘇絢慧','《蘇心時光》'],['貝姬Becky','《宋家小館》'],['林依柔','《說話人聲》'],['陳重銘','《不敗教主陳重銘》'],['蕭邦','《蕭邦相談室》'],
+['諾曼大叔','《無所不試 無樂不作》'],['佐依','《佐編茶水間》'],['瓦基','《下一本讀什麼?》'],['子玲老師','《子玲的親子聊心屋—媽媽的自我成長&親子教養》'],
+['文森','《文森說書》'],['美股航海王 傑克·史派羅','《美股航海王｜指數流》'],['Alin','《美業幹什麼》'],['Sam','《山姆書者》'],['治療師瑪奇','《教出你的路》'],
+['曼蒂歐逆 × 神燈教母Ivy','《任性歐逆機智生活》']
+];
+
+const CK = [
+ {g:'🛂 出發前，先處理好', items:[
+  ['vjw','註冊並填好 Visit Japan Web','入境、海關、退稅都能先辦；出發前登入確認內容'],
+  ['app','下載 My Club Med APP','活動項目、度假村地圖、服裝主題都在裡面'],
+  ['cash','準備日幣現金','度假村不提供換幣；村內付款用日幣現金，或 VISA／MASTER／AMEX／JCB'],
+  ['card','帶一張實體信用卡','部分活動需額外付費，消費當下結清，退房更快'],
+  ['book','想體驗的活動，記得前一天預約','出海浮潛、風浪板初級課程、村外遊、手工麵包'],
+ ]},
+ {g:'🧳 行李', items:[
+  ['pass','護照','證件請放隨身包'],
+  ['pb','行動電源、鋰電池、打火機放隨身','不能託運；打火機限帶 1 個'],
+  ['liq','液體分裝進透明夾鏈袋','單罐 100ml 以下、總量 1 公升內'],
+  ['wgt','託運 ≤ 20 公斤、手提 ≤ 10 公斤',''],
+  ['shoe','運動鞋','健身房、網球、壁球與健身課程都需要'],
+  ['bottle','一個可重複使用的水瓶','村內鼓勵重複使用空瓶，到吧台或飲水機補水'],
+  ['swim','泳衣、防曬',''],
+  ['dress','頒獎典禮與餐敘的晚間服裝','12/3 16:30 起星光大道、紅毯拍照'],
+ ]},
+ {g:'📍 12/1 出發日', items:[
+  ['d1a','04:05 前到桃園機場第一航廈，台灣虎航櫃檯報到',''],
+  ['d1b','出關後找窗邊白色長櫃檯','向 Club Med 接待人員出示訂單或姓名'],
+  ['d1c','配戴度假村識別手環','入住期間隨時配戴，方便辨別年齡層'],
+ ]},
+ {g:'🏆 12/3 鬧鐘獎日', items:[
+  ['d3a','09:45–12:20 知識沙龍（沙灘）','不用報名，下雨改劇場'],
+  ['d3b','16:30 星光大道進場，17:00 典禮開始','劇場在大廳進來、面對泳池的右手邊'],
+  ['d3c','19:00 典禮結束後，順路到櫃台結清房帳','最晚 20:00 前；含現場多單點的牛排、龍蝦、特殊酒單'],
+  ['d3d','19:30 餐敘（餐廳 ROOM3）',''],
+  ['d3e','睡前把行李整理好','隔天 06:00 房門口收行李'],
+ ]},
+ {g:'🧳 12/4 離村日', items:[
+  ['d4a','06:00 前行李放房門口',''],
+  ['d4b','免稅品留在隨身包','先完成海關確認，再托運行李'],
+  ['d4c','07:00 搭車離開度假村，09:25 起飛','以現場公告為準'],
+ ]},
+];
+
+/* 單一時間的列用窄欄，時間區間用寬欄 */
+const fitSlots = () => $$('.slot').forEach(s => { const b = s.querySelector('b'); if(b && !/[–-]/.test(b.textContent)) s.classList.add('s'); });
+fitSlots();
+
+/* ============ 導覽 ============ */
+function goPage(name, anchor){
+  $$('nav button').forEach(x => x.classList.toggle('on', x.dataset.page === name));
+  $$('.page').forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
+  if(anchor){
+    const el = document.getElementById(anchor);
+    if(el){
+      if(el.tagName === 'DETAILS') el.open = true;
+      setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+      return;
+    }
+  }
+  window.scrollTo({top:0});
+}
+$$('nav button').forEach(b => b.onclick = () => goPage(b.dataset.page));
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]');
+  if(g){ const [p, a] = g.dataset.go.split(':'); goPage(p, a); }
+});
+
+/* 頁內快速跳轉 chips */
+function buildStrip(id, list){
+  $(id).innerHTML = list.map(([a, l]) => `<button class="chip sm" data-a="${a}">${l}</button>`).join('');
+  $(id).onclick = e => {
+    const b = e.target.closest('.chip'); if(!b) return;
+    const el = document.getElementById(b.dataset.a);
+    if(el.tagName === 'DETAILS') el.open = true;
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+  };
+}
+buildStrip('#resortStrip', [['r-basic','基本'],['r-room','客房'],['r-food','餐廳'],['r-land','陸上'],['r-water','水上'],['r-leisure','泳池'],['r-kids','兒童'],['r-spa','SPA'],['r-app','APP']]);
+buildStrip('#infoStrip', [['i-arrive','抵達'],['i-leave','離村'],['i-rules','提醒'],['i-vjw','入境'],['i-security','安檢'],['i-tax','免稅'],['money','日幣'],['i-contact','聯絡']]);
+
+/* ============ 每日行程渲染 ============ */
+const dayOfNow = () => {
+  const t = new Date(NOW().getTime() + 9*3600e3).toISOString().slice(0,10);
+  return DAYS.findIndex(d => d.key === t);
+};
+const hm = s => s.split(':').map(Number).reduce((h, m) => h*60 + m);
+const strip = $('#dayStrip');
+DAYS.forEach((day, i) => {
+  const b = document.createElement('button');
+  b.className = 'chip'; b.setAttribute('role','tab');
+  b.innerHTML = day.d + '<small>' + day.date + '</small>';
+  b.onclick = () => renderDay(i);
+  strip.appendChild(b);
+});
+const MAP_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+
+function actBlock(day){
+  if(!day.act) return '';
+  const [from, to] = day.act.map(hm);
+  const list = ACT.filter(a => {
+    const m = hm(a.t);
+    if(m < from || m > to) return false;
+    if(a.no && a.no.includes(day.wd)) return false;
+    if(a.only && !a.only.includes(day.wd)) return false;
+    return true;
+  });
+  if(!list.length) return '';
+  const buckets = [['☀️ 上午', 0, 720], ['🌤️ 下午', 720, 1020], ['🌇 傍晚', 1020, 1441]];
+  let h = '<details class="acc"' + (day.d === 'D2' ? ' open' : '') + '><summary>🏖️ ' + day.actLabel + '（' + list.length + ' 項）</summary><div class="acc-body">';
+  buckets.forEach(([label, a, b]) => {
+    const rows = list.filter(x => hm(x.t) >= a && hm(x.t) < b);
+    if(!rows.length) return;
+    h += '<h4>' + label + '</h4>';
+    rows.forEach(x => {
+      h += '<div class="slot"><b>' + x.t + '</b><span>' + esc(x.n) + (x.p ? '<br><small class="muted">' + esc(x.p) + '</small>' : '') +
+        (x.tag ? '<br><span class="pill ' + (x.book ? 'book' : 'age') + '">' + esc(x.tag) + '</span>' : '') + '</span></div>';
+    });
+  });
+  h += '<p class="muted" style="margin-top:8px">瑜珈課需年滿 8 歲、健身課程需年滿 16 歲，請穿運動鞋。依當天海況與公告調整。</p>';
+  h += '<div class="acts"><button class="btn ghost" data-go="resort:r-land">完整陸上活動</button><button class="btn ghost" data-go="resort:r-water">完整水上活動</button></div>';
+  return h + '</div></details>';
+}
+
+function renderDay(i){
+  $$('#dayStrip .chip').forEach((c, k) => c.classList.toggle('on', k === i));
+  const d = DAYS[i], now = NOW(), live = dayOfNow() === i;
+  let nextIdx = -1;
+  if(live) nextIdx = d.items.findIndex(it => it.at && new Date(it.at) > now);
+  let h = '<div class="day-head' + (d.award ? ' award' : '') + '"><h2>' + d.d + '｜' + d.date + '　' + d.title + '</h2><p>' + d.sub + '</p></div>';
+  if(d.tip) h += '<div class="note' + (d.award ? ' gold' : '') + '">' + d.tip + '</div>';
+  h += '<div class="tl">';
+  d.items.forEach((it, k) => {
+    const past = live && it.at && new Date(it.at) <= now && k < nextIdx;
+    const cls = 'tl-item' + (it.hl ? ' hl' : '') + (past ? ' past' : '') + (k === nextIdx ? ' next' : '');
+    h += '<div class="' + cls + '"><div class="tl-time">' + it.t + '</div><div class="tl-dot"></div><div class="tl-card">';
+    if(k === nextIdx) h += '<span class="tl-badge">下一個</span><br>';
+    h += '<div class="tl-name">' + it.n + '</div>';
+    if(it.m) h += '<div class="tl-meta">' + it.m + '</div>';
+    if(it.c) h += '<span class="tl-cost">💴 ' + it.c + '</span>';
+    if(it.map || it.cal || it.go){
+      h += '<div class="acts">';
+      if(it.map) h += '<a class="btn" target="_blank" rel="noopener" href="' + G(it.map) + '">' + MAP_ICON + '開導航</a>';
+      if(it.go) h += '<button class="btn ghost" data-go="' + it.go[0] + ':' + it.go[1] + '">' + it.go[2] + '</button>';
+      if(it.cal) h += '<button class="btn ghost" data-cal="' + d.d + ':' + k + '">📅 加入行事曆</button>';
+      h += '</div>';
+    }
+    h += '</div></div>';
+  });
+  h += '</div>' + actBlock(d);
+  $('#dayContent').innerHTML = h;
+  fitSlots();
+  window.scrollTo({top:0});
+  const on = $('#dayStrip .chip.on'); if(on) on.scrollIntoView({inline:'center', block:'nearest'});
+}
+const startDay = Math.max(0, dayOfNow());
+renderDay(startDay);
+
+/* ============ 倒數 ============ */
+(function(){
+  const el = $('#countdown'), now = NOW();
+  const start = new Date('2026-12-01T00:00:00+08:00');
+  const day = dayOfNow();
+  if(day >= 0) el.textContent = '🌴 旅程第 ' + (day + 1) + ' 天';
+  else if(now < start){
+    const n = Math.ceil((start - now) / 864e5);
+    el.textContent = '⏳ 還有 ' + n + ' 天出發';
+  } else el.textContent = '🌺 謝謝你一起上島';
+})();
+
+/* ============ 入圍名單搜尋 ============ */
+function renderNoms(q){
+  const k = (q || '').trim().toLowerCase();
+  const rows = NOMS.map((n, i) => [i + 1, n[0], n[1]]).filter(r => !k || (r[1] + r[2]).toLowerCase().includes(k));
+  $('#nomList').innerHTML = rows.length
+    ? rows.map(r => '<div class="nom"><span class="n">' + r[0] + '</span><div><div class="c">' + esc(r[1]) + '</div><div class="p">' + esc(r[2]) + '</div></div></div>').join('')
+    : '<div class="empty">找不到符合的節目</div>';
+}
+renderNoms('');
+$('#nomSearch').addEventListener('input', e => renderNoms(e.target.value));
+
+/* ============ 圖片放大 ============ */
+document.addEventListener('click', e => {
+  const z = e.target.closest('[data-zoom]');
+  if(z){ $('#lbImg').src = z.dataset.zoom; $('#lbImg').alt = z.querySelector('img').alt; $('#lbOpen').href = z.dataset.zoom; $('#lb').classList.add('on'); $('#lb').scrollTop = 0; }
+});
+$('#lbClose').onclick = () => $('#lb').classList.remove('on');
+$('#lb').addEventListener('click', e => { if(e.target.id === 'lb' || e.target.id === 'lbImg') $('#lb').classList.remove('on'); });
+
+/* ============ 急用面板 ============ */
+$('#sosBtn').onclick = () => $('#sheet').classList.add('on');
+$('#sheetClose').onclick = () => $('#sheet').classList.remove('on');
+$('#sheet').addEventListener('click', e => { if(e.target.id === 'sheet') $('#sheet').classList.remove('on'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ $('#sheet').classList.remove('on'); $('#lb').classList.remove('on'); } });
+
+/* ============ 複製 ============ */
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-copy]'); if(!b) return;
+  const txt = b.dataset.copy, old = b.textContent;
+  try{ await navigator.clipboard.writeText(txt); }
+  catch(_){ const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(__){} t.remove(); }
+  b.textContent = '✓ 已複製'; setTimeout(() => b.textContent = old, 1600);
+});
+
+/* ============ 日幣速算 ============ */
+(function(){
+  let rate = parseFloat(localStorage.getItem('isg-rate')) || 4.33;
+  const r = $('#rate'), j = $('#jpy'), t = $('#twd');
+  r.value = rate;
+  const fmt = n => String(Math.round(n * 100) / 100);
+  j.addEventListener('input', () => { t.value = j.value === '' ? '' : fmt(parseFloat(j.value) / rate); });
+  t.addEventListener('input', () => { j.value = t.value === '' ? '' : fmt(parseFloat(t.value) * rate); });
+  r.addEventListener('change', () => {
+    const v = parseFloat(r.value);
+    if(v > 0){ rate = v; try{ localStorage.setItem('isg-rate', v); }catch(_){} if(j.value !== '') j.dispatchEvent(new Event('input')); }
+    else r.value = rate;
+  });
+})();
+
+/* ============ 清單（localStorage） ============ */
+(function(){
+  const KEY = 'ishigaki-pack-v1';
+  let saved = {}; try{ saved = JSON.parse(localStorage.getItem(KEY) || '{}'); }catch(_){}
+  $('#ckBody').innerHTML = CK.map(g => '<div class="sec-title">' + g.g + '</div><div class="card">' +
+    g.items.map(([k, t, s]) => '<label class="ck"><input type="checkbox" data-ck="' + k + '"><span class="box" aria-hidden="true"></span><span class="t">' + esc(t) + (s ? '<small>' + esc(s) + '</small>' : '') + '</span></label>').join('') + '</div>').join('');
+  const cks = $$('[data-ck]');
+  function upd(){
+    const done = cks.filter(c => c.checked).length;
+    $('#ckText').textContent = '已完成 ' + done + ' / ' + cks.length + (done === cks.length ? '　🎉 都準備好了' : '');
+    $('#ckBar').style.width = (done / cks.length * 100) + '%';
+  }
+  cks.forEach(c => {
+    if(saved[c.dataset.ck]) c.checked = true;
+    c.addEventListener('change', () => { saved[c.dataset.ck] = c.checked; try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(_){} upd(); });
+  });
+  upd();
+})();
+
+/* ============ 行事曆 .ics ============ */
+const icsT = iso => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+const icsEsc = s => String(s).replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n');
+function buildICS(evts){
+  const L = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ishigaki Trip Handbook//TW','CALSCALE:GREGORIAN','X-WR-CALNAME:鬧鐘獎×Club Med 石垣島'];
+  evts.forEach((c, i) => {
+    L.push('BEGIN:VEVENT', 'UID:isg-' + i + '-' + icsT(c.s) + '@ishigaki-trip-2026', 'DTSTAMP:' + icsT(new Date().toISOString()),
+      'DTSTART:' + icsT(c.s), 'DTEND:' + icsT(c.e), 'SUMMARY:' + icsEsc(c.title), 'LOCATION:' + icsEsc(c.loc || ''),
+      'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:' + icsEsc(c.title),'TRIGGER:-PT30M','END:VALARM','END:VEVENT');
+  });
+  L.push('END:VCALENDAR');
+  return L.join('\r\n');
+}
+function downloadICS(evts, name){
+  const url = URL.createObjectURL(new Blob([buildICS(evts)], {type:'text/calendar;charset=utf-8'}));
+  const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-cal]'); if(!b) return;
+  const [d, k] = b.dataset.cal.split(':'); const day = DAYS.find(x => x.d === d);
+  downloadICS([day.items[+k].cal], 'ishigaki-' + d + '-' + k + '.ics');
+});
+$('#calAll').onclick = () => downloadICS(DAYS.flatMap(d => d.items.filter(i => i.cal).map(i => i.cal)), 'ishigaki-2026-all.ics');
+
+/* ============ 離線快取（PWA） ============ */
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>
