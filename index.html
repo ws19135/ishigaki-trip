@@ -240,6 +240,40 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
 .end img{width:100%;height:auto;min-height:150px;object-fit:cover}
 .end p{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 12px;background:linear-gradient(transparent,rgba(14,95,126,.9));font-weight:900;font-size:15px;line-height:1.5}
 .foot{text-align:center;font-size:13px;color:#7c735f;margin:16px 0 6px;font-weight:700}
+
+/* ===== Trip picker / guide / brief ===== */
+.h-tag.trip{cursor:pointer;background:#fff;color:var(--ocean-deep);border-color:#fff;font-family:inherit;font-weight:900}
+.h-tag.trip:active{transform:scale(.96)}
+#picker{position:fixed;inset:0;z-index:200;background:var(--sand);overflow:auto;display:none;-webkit-overflow-scrolling:touch}
+#picker.on{display:block}
+.pk-hero{position:relative;color:#fff;padding:calc(34px + env(safe-area-inset-top)) 22px 58px;background:var(--ocean-deep) url(assets/cover.jpg) center 62%/cover}
+.pk-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(165deg,rgba(14,95,126,.94),rgba(21,144,184,.8) 60%,rgba(104,205,194,.6))}
+.pk-hero>*{position:relative}
+.pk-hero .sub{font-size:12.5px;letter-spacing:.14em;font-weight:700;opacity:.92}
+.pk-hero h1{font-size:26px;font-weight:900;line-height:1.35;margin:6px 0 8px}
+.pk-hero h1 em{font-style:normal;color:var(--sun)}
+.pk-hero p{font-size:15px;font-weight:700;max-width:26em}
+.pk-wave{position:absolute;bottom:-1px;left:0;width:100%;height:26px;display:block}
+.pk-body{max-width:560px;margin:0 auto;padding:6px 16px calc(28px + env(safe-area-inset-bottom))}
+.pk-q{font-size:17px;font-weight:900;color:var(--ocean-deep);margin:14px 2px 10px}
+.pk-card{display:flex;flex-direction:column;gap:3px;width:100%;text-align:left;background:#fff;border:2px solid #f0e9db;border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow);color:var(--ink);font-family:inherit;cursor:pointer;transition:.15s}
+.pk-card:active{transform:scale(.98)}
+.pk-card.on{border-color:var(--ocean);background:#f2fafc}
+.pk-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pk-date{font-size:17px;font-weight:900;color:var(--ocean-deep)}
+.pk-days{background:var(--sun);color:#5a3d00;font-size:13px;font-weight:900;border-radius:99px;padding:1px 11px;white-space:nowrap}
+.pk-from{font-size:15px;font-weight:900;margin-top:2px}
+.pk-fl{font-size:13.5px;color:var(--ink-soft);font-weight:700;line-height:1.5}
+.pk-go{margin-top:8px;align-self:flex-start;background:linear-gradient(135deg,var(--coral),#ff9a76);color:#fff;font-size:14px;font-weight:900;border-radius:99px;padding:5px 16px}
+.pk-card.on .pk-go{background:var(--ocean)}
+.pk-note{font-size:13.5px;color:var(--ink-soft);font-weight:700;margin:2px 2px 10px}
+.guide{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:var(--gold-soft);border:1.5px solid var(--sun);border-radius:14px;padding:11px 14px;margin-bottom:12px;color:#6b4d00;font-size:14.5px;font-weight:700}
+.guide[hidden]{display:none}
+.guide b{flex:1 0 100%;font-size:15.5px}
+.guide span{flex:1 1 12em}
+.guide .btn{flex:0 0 auto}
+.brief h3{margin-bottom:8px}
+.brief .kv{grid-template-columns:3em 1fr}
 </style>
 </head>
 <body>
@@ -247,12 +281,13 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
 <header>
   <div class="h-bg" style="background-image:url(assets/cover.jpg)"></div>
   <button class="sos" id="sosBtn" aria-haspopup="dialog">📞 急用</button>
-  <div class="h-sub">ISHIGAKI · 2026.12.01 – 12.04</div>
-  <h1 class="h-title">鬧鐘獎 <span class="x">×</span> Club Med<br>石垣島度假村 <span class="em">4 日</span></h1>
+  <div class="h-sub" id="hSub">ISHIGAKI · 2026.12</div>
+  <h1 class="h-title">鬧鐘獎 <span class="x">×</span> Club Med<br>石垣島度假村 <span class="em" id="hDays">　</span></h1>
   <div class="h-tags">
     <span class="h-tag">🏝️ Club Med 石垣島</span>
     <span class="h-tag">✈️ 台灣虎航</span>
     <span class="h-tag cd" id="countdown">　</span>
+    <button class="h-tag trip" id="tripChip" type="button">🧭 選擇梯次</button>
   </div>
   <svg class="wave" viewBox="0 0 375 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 C60,26 120,2 187,12 C255,22 315,4 375,14 L375,26 L0,26 Z" fill="#faf5ea"/></svg>
 </header>
@@ -477,7 +512,7 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
       <div class="slot"><b>18:00–19:00</b><span>開胃小點</span></div>
       <div class="slot"><b>21:30–23:00</b><span>消夜</span></div>
       <p class="muted">另有手工麵包★，需前一天向吧台預訂。</p>
-      <div class="note" style="margin-top:12px">💳 現場多單點的牛排、龍蝦、特殊酒單，都要在 12/3 晚上 20:00 前於櫃台結清。</div>
+      <div class="note" style="margin-top:12px">💳 現場多單點的牛排、龍蝦、特殊酒單，都要在離村前一晚 20:00 前於櫃台結清（<b data-settle></b>）。</div>
     </div>
   </details>
 
@@ -587,6 +622,8 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
 
 <!-- ================= 須知 ================= -->
 <section class="page" id="page-info">
+  <div class="guide" id="guideInfo" hidden><b>📋 須知（2／2）</b><span>看完這頁，就可以進入你的行程囉。</span><button class="btn coral" id="guideDone" type="button">進入我的行程 →</button></div>
+  <div class="card brief" id="briefInfo"></div>
   <div class="strip" id="infoStrip" aria-label="快速跳到"></div>
 
   <div class="sec-title" id="i-arrive">🚐 抵達石垣島・報到流程</div>
@@ -603,14 +640,7 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
   </div>
 
   <div class="sec-title" id="i-leave">🧳 離村流程</div>
-  <div class="card">
-    <ol class="steps coral">
-      <li><b>12/3（四）20:00 前</b>，到櫃台確認房帳是否結清（含現場多單點的牛排、龍蝦、特殊酒單等）。</li>
-      <li><b>12/4（五）06:00</b> 在房門口收行李；超過時間需自行拿到前台。</li>
-      <li>約 <b>07:00</b> 搭車離開度假村（實際以現場公告為準）。</li>
-    </ol>
-    <div class="note" style="margin:10px 0 0">建議攜帶實體信用卡，部分活動需額外付費，消費當下結清，退房更快。</div>
-  </div>
+  <div class="card" id="leaveCard"></div>
 
   <div class="sec-title" id="i-rules">📌 村內小提醒</div>
   <div class="card">
@@ -695,6 +725,8 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
 
 <!-- ================= 清單 ================= -->
 <section class="page" id="page-check">
+  <div class="guide" id="guideCheck" hidden><b>🌺 出發前先看這兩頁（1／2）</b><span>先確認你的梯次重點，把清單準備好，下一頁是須知。</span><button class="btn coral" id="guideNext" type="button">下一步：看須知 →</button></div>
+  <div class="card brief" id="briefCheck"></div>
   <div class="card">
     <div class="prog-t" id="ckText">已完成 0 / 0</div>
     <div class="prog"><i id="ckBar"></i></div>
@@ -723,6 +755,21 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
   <button data-page="check"><span class="ico">✅</span>清單</button>
 </nav>
 
+<div id="picker" class="on" role="dialog" aria-modal="true" aria-labelledby="pickTitle">
+  <div class="pk-hero">
+    <div class="sub">ISHIGAKI · 2026.12</div>
+    <h1 id="pickTitle">鬧鐘獎 × Club Med<br>石垣島手冊 <em>🌺</em></h1>
+    <p>歡迎上島。先選你的出發梯次，手冊會換成你的航班、報到與離村時間。</p>
+    <svg class="pk-wave" viewBox="0 0 375 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 C60,26 120,2 187,12 C255,22 315,4 375,14 L375,26 L0,26 Z" fill="#faf5ea"/></svg>
+  </div>
+  <div class="pk-body">
+    <div class="pk-q">你是哪一梯出發？</div>
+    <div id="pickList"></div>
+    <p class="pk-note">不確定的話，對照行前收到的「行程確認表」。選錯也沒關係，之後點頁首的「梯次」就能更換。</p>
+    <button class="btn ghost block" id="pickClose" type="button" hidden>先不換，回到手冊</button>
+  </div>
+</div>
+
 <div id="sheet" role="dialog" aria-modal="true" aria-label="急用聯絡">
   <div class="pane">
     <h3>📞 急用聯絡 <button class="close" id="sheetClose" aria-label="關閉">✕</button></h3>
@@ -750,70 +797,134 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const urlNow = new URLSearchParams(location.search).get('now');      /* 測試用：?now=2026-12-03T10:00+09:00 */
 const NOW = () => urlNow ? new Date(urlNow) : new Date();
 
-/* ============ 行程資料 ============ */
-const DAYS = [
-{d:'D1', key:'2026-12-01', date:'12/1 二', wd:2, title:'✈️ 出發日・飛往石垣島', sub:'凌晨出門，睜開眼就是海',
- tip:'🌙 04:05 在桃園機場台灣虎航櫃檯報到。前一晚早點睡，證件與行動電源先放進隨身包。',
- act:['14:00','24:00'], actLabel:'抵達度假村後，今天還能玩的',
- items:[
- {t:'04:05', at:'2026-12-01T04:05+08:00', n:'🛄 桃園機場第一航廈・台灣虎航櫃檯報到', m:'建議起飛前 2.5 小時抵達。託運 20 公斤、手提 10 公斤。', map:'桃園國際機場第一航廈', hl:1,
-   cal:{s:'2026-12-01T04:05+08:00', e:'2026-12-01T06:05+08:00', title:'桃園機場報到（台灣虎航櫃檯）', loc:'桃園國際機場第一航廈'}},
- {t:'06:35', at:'2026-12-01T06:35+08:00', n:'✈️ 起飛 IT 736　桃園 → 石垣島', m:'機上餐食無法預訂，僅接受機上購買。',
-   cal:{s:'2026-12-01T06:35+08:00', e:'2026-12-01T08:35+09:00', title:'IT736 桃園→石垣島', loc:'桃園國際機場'}},
- {t:'08:35', at:'2026-12-01T08:35+09:00', n:'🏝️ 抵達石垣島機場', m:'日本當地時間（比台灣快 1 小時）。出關後往大廳前方，找窗邊白色長櫃檯；鬧鐘獎團隊夥伴會持領隊旗在櫃檯前等大家。', hl:1, go:['info','i-arrive','看櫃檯位置圖']},
- {t:'接著', n:'🚐 向 Club Med 接待人員詢問接駁', m:'出示 Club Med 訂單或姓名，依指示搭接駁車前往度假村。'},
- {t:'接著', n:'📝 度假村統一辦理入住登記', m:'聽完入住說明就能使用村內設施與活動，行李由度假村協助托運至客房。'},
- {t:'15:00', at:'2026-12-01T15:00+09:00', n:'🔑 客房入住時間（約）', m:'房間約 15:00 可入住。'},
- {t:'18:30', at:'2026-12-01T18:30+09:00', n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'},
- {t:'18:30', at:'2026-12-01T18:30+09:00', n:'📝 想玩風浪板初學、出海浮潛？', m:'需前一天預約：18:30–19:00 到劇場前的水上活動報名櫃檯。', go:['resort','r-water','看水上活動']}
- ]},
-{d:'D2', key:'2026-12-02', date:'12/2 三', wd:3, title:'🌴 自由放鬆日', sub:'上午下午自由安排，13:15 有一場流年講座',
- tip:'📲 每日課程以 My Club Med APP 與村內公告為準。想體驗的活動，先看哪些要預約。',
- act:['08:00','24:00'], actLabel:'今天度假村有這些活動',
- items:[
- {t:'07:00', at:'2026-12-02T07:00+09:00', n:'🥐 主餐廳早餐', m:'07:00–09:30'},
- {t:'09:00', at:'2026-12-02T09:00+09:00', n:'🏖️ 海灘小屋開放', m:'上午場 09:00–12:00；海灘救生員 09:00–17:00 執勤。', hl:1, go:['resort','r-water','看水上活動']},
- {t:'10:00', at:'2026-12-02T10:00+09:00', n:'🌺 SPA 櫃檯營業', m:'10:00–18:00', c:'需額外付費', go:['resort','r-spa','看村外遊與 SPA']},
- {t:'11:45', at:'2026-12-02T11:45+09:00', n:'🍽️ 午餐', m:'主餐廳 11:45–13:45；輕食 14:00–15:30'},
- {t:'13:15', at:'2026-12-02T13:15+09:00', n:'🔮 知識沙龍｜寶哥說流年', m:'人生設計學院【寶哥說流年】2027 丁未羊年流年講座（13:15–14:45）。會議室，無須報名。', hl:1, go:['awards','salons','看講座介紹'],
-   cal:{s:'2026-12-02T13:15+09:00', e:'2026-12-02T14:45+09:00', title:'鬧鐘獎知識沙龍：寶哥說流年（2027 丁未羊年流年講座）', loc:'Club Med 石垣島 會議室'}},
- {t:'14:00', at:'2026-12-02T14:00+09:00', n:'🌊 海灘小屋下午場', m:'14:00–17:00'},
- {t:'15:30', at:'2026-12-02T15:30+09:00', n:'🍰 Tingara 吧台下午茶', m:'15:30–17:00'},
- {t:'18:30', at:'2026-12-02T18:30+09:00', n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'},
- {t:'21:30', at:'2026-12-02T21:30+09:00', n:'🌙 Tingara 吧台消夜', m:'21:30–23:00'}
- ]},
-{d:'D3', key:'2026-12-03', date:'12/3 四', wd:4, award:1, title:'🏆 鬧鐘獎日', sub:'知識沙龍 → 頒獎典禮 → 餐敘 & 抽獎',
- tip:'🎖️ 今天是主場。中午到下午有一段空檔，留給午休、看海，或慢慢換上典禮的裝扮。',
- act:['12:30','15:30'], actLabel:'沙龍後到典禮前的空檔，可以玩',
- items:[
- {t:'07:00', at:'2026-12-03T07:00+09:00', n:'🥐 主餐廳早餐', m:'07:00–09:30'},
- {t:'09:30', at:'2026-12-03T09:30+09:00', n:'🚪 知識沙龍開放入場', m:'空中飛人廣場（遇雨移至劇場）。無須報名，依時間到場。', go:['awards','venue-map','看場地位置']},
- {t:'09:45', at:'2026-12-03T09:45+09:00', n:'🎤 沙龍｜睡不好，問題可能從早上就開始了', m:'蔡宇哲 × 蔡承家 Jerry（09:45–10:30）', hl:1, go:['awards','salons','看沙龍介紹'],
-   cal:{s:'2026-12-03T09:45+09:00', e:'2026-12-03T10:30+09:00', title:'鬧鐘獎知識沙龍：睡不好，問題可能從早上就開始了', loc:'Club Med 石垣島 空中飛人廣場（遇雨移至劇場）'}},
- {t:'10:40', at:'2026-12-03T10:40+09:00', n:'🎤 沙龍｜錢到底要存到多少，才敢開始好好生活？', m:'郝旭烈（郝哥）・陳重銘・Dr. Selena 楊倩琳（10:40–11:25）', hl:1,
-   cal:{s:'2026-12-03T10:40+09:00', e:'2026-12-03T11:25+09:00', title:'鬧鐘獎知識沙龍：錢到底要存到多少，才敢開始好好生活？', loc:'Club Med 石垣島 空中飛人廣場（遇雨移至劇場）'}},
- {t:'11:35', at:'2026-12-03T11:35+09:00', n:'🎤 微醺女子沙龍｜有些鳥事，後來都成了叫醒自己的鬧鐘', m:'珊迪兔・Jill（11:35–12:20）', hl:1,
-   cal:{s:'2026-12-03T11:35+09:00', e:'2026-12-03T12:20+09:00', title:'鬧鐘獎知識沙龍：微醺女子沙龍', loc:'Club Med 石垣島 空中飛人廣場（遇雨移至劇場）'}},
- {t:'12:20', at:'2026-12-03T12:20+09:00', n:'☀️ 沙龍結束・午餐與自由時間', m:'主餐廳午餐到 13:45，輕食 14:00–15:30。'},
- {t:'15:30', at:'2026-12-03T15:30+09:00', n:'✨ 開放入場・星光大道貴賓進場', m:'劇場（大廳進來，面對泳池的右手邊）。踏上星光紅毯，在主題背板前留影；15:30–16:30 備有精緻雞尾酒與餐點。', hl:1, go:['awards','ceremony','看典禮流程']},
- {t:'16:00', at:'2026-12-03T16:00+09:00', n:'🏆 第二屆鬧鐘獎頒獎典禮', m:'16:00–18:00｜劇場', hl:1,
-   cal:{s:'2026-12-03T16:00+09:00', e:'2026-12-03T18:00+09:00', title:'第二屆鬧鐘獎頒獎典禮', loc:'Club Med 石垣島 劇場'}},
- {t:'18:00', at:'2026-12-03T18:00+09:00', n:'💳 順路到櫃台結清房帳', m:'離村前一晚 20:00 前需結清，含現場多單點的牛排、龍蝦、特殊酒單。典禮到餐敘中間有 30 分鐘。', go:['info','i-leave','看離村流程']},
- {t:'18:30', at:'2026-12-03T18:30+09:00', n:'🥂 餐敘 & 抽獎活動', m:'餐廳 ROOM3（18:30–20:00）', hl:1,
-   cal:{s:'2026-12-03T18:30+09:00', e:'2026-12-03T20:00+09:00', title:'鬧鐘獎餐敘 & 抽獎活動', loc:'Club Med 石垣島 餐廳 ROOM3'}},
- {t:'20:00', at:'2026-12-03T20:00+09:00', n:'🧳 回房整理行李', m:'明早 06:00 房門口收行李。護照、行動電源、貴重物品與免稅品，留在隨身包。'}
- ]},
-{d:'D4', key:'2026-12-04', date:'12/4 五', wd:5, title:'🧳 離村・返台日', sub:'很早出發，前一晚都備妥，今天只管慢慢走',
- tip:'🛍️ 想辦免稅退稅？商品先不要放進託運行李，先完成海關確認，再托運。',
- items:[
- {t:'06:00', at:'2026-12-04T06:00+09:00', n:'🧳 房門口收行李・退房', m:'06:00 前把行李放在房門口；超過時間需自行拿至前台。', hl:1,
-   cal:{s:'2026-12-04T06:00+09:00', e:'2026-12-04T06:30+09:00', title:'房門口收行李・退房', loc:'Club Med 石垣島'}},
- {t:'07:00', at:'2026-12-04T07:00+09:00', n:'🚐 搭車離開度假村（約）', m:'實際以度假村現場公告為準。'},
- {t:'09:25', at:'2026-12-04T09:25+09:00', n:'✈️ 起飛 IT 737　石垣島 → 桃園', m:'機上餐食僅接受機上購買。', hl:1,
-   cal:{s:'2026-12-04T09:25+09:00', e:'2026-12-04T09:35+08:00', title:'IT737 石垣島→桃園', loc:'石垣空港'}},
- {t:'09:35', at:'2026-12-04T09:35+08:00', n:'🏠 抵達桃園機場', m:'台灣時間。辛苦了，回家慢慢休息。'}
- ]}
-];
+/* ============ 梯次與行程資料 ============ */
+const WD = ['日','一','二','三','四','五','六'];
+const p2 = n => String(n).padStart(2, '0');
+const dKey = (m, d) => '2026-' + p2(m) + '-' + p2(d);
+const wdOf = (m, d) => new Date(2026, m - 1, d).getDay();
+const dShort = (m, d) => m + '/' + d + ' ' + WD[wdOf(m, d)];            /* 12/2 三 */
+const dFull = (m, d) => m + '/' + d + '（' + WD[wdOf(m, d)] + '）';      /* 12/2（三） */
+const at = (m, d, t, tz) => dKey(m, d) + 'T' + t + (tz || '+09:00');    /* 預設日本時間 */
+const plus = (iso, h) => new Date(new Date(iso).getTime() + h * 3600e3).toISOString();
+const TW = '+08:00';
+
+/* 三個出發梯次（來源：12/1、12/2 兩份最終版手冊）。鬧鐘獎活動日期固定：12/2 講座、12/3 沙龍／典禮／餐敘 */
+const TRIPS = {
+ a:{id:'a', start:[12,1], end:[12,4], nDays:4, city:'桃園', eve:[12,3],
+    airport:{name:'桃園機場第一航廈', map:'桃園國際機場第一航廈'}, checkin:{time:'04:05', counter:'台灣虎航櫃檯'},
+    out:{no:'IT 736', dep:'06:35', arr:'08:35'}, back:{no:'IT 737', dep:'09:25', arr:'09:35'},
+    leave:{bag:'06:00', car:'07:00', checkout:'06:00'}, arrSub:'凌晨出門，睜開眼就是海', early:'🌙'},
+ b:{id:'b', start:[12,2], end:[12,5], nDays:4, city:'桃園', eve:[12,4],
+    airport:{name:'桃園機場第一航廈', map:'桃園國際機場第一航廈'}, checkin:{time:'04:05', counter:'台灣虎航櫃檯'},
+    out:{no:'IT 736', dep:'06:35', arr:'08:35'}, back:{no:'IT 737', dep:'09:25', arr:'09:35'},
+    leave:{bag:'06:00', car:'07:00', checkout:'06:00'}, arrSub:'凌晨出門，下午還有一場流年講座', early:'🌙'},
+ c:{id:'c', start:[12,2], end:[12,6], nDays:5, city:'高雄', eve:[12,5],
+    airport:{name:'高雄小港機場國際航廈', map:'高雄國際機場國際航廈'}, checkin:{time:'06:00', counter:'台灣虎航櫃檯'},
+    out:{no:'IT 762', dep:'08:30', arr:'10:10'}, back:{no:'IT 763', dep:'12:15', arr:'12:25'},
+    leave:{bag:'07:00', car:'08:00', checkout:'08:00'}, arrSub:'清晨出門，下午還有一場流年講座', early:'🌅'}
+};
+
+const lecture = (m, d) => ({t:'13:15', at:at(m,d,'13:15'), n:'🔮 知識沙龍｜寶哥說流年', m:'人生設計學院【寶哥說流年】2027 丁未羊年流年講座（13:15–14:45）。會議室，無須報名。', hl:1, go:['awards','salons','看講座介紹'],
+  cal:{s:at(m,d,'13:15'), e:at(m,d,'14:45'), title:'鬧鐘獎知識沙龍：寶哥說流年（2027 丁未羊年流年講座）', loc:'Club Med 石垣島 會議室'}});
+const settleItem = (m, d, t, extra) => ({t, at:at(m,d,t), n:'💳 順路到櫃台結清房帳', m:'離村前一晚 20:00 前需結清，含現場多單點的牛排、龍蝦、特殊酒單。' + (extra || ''), go:['info','i-leave','看離村流程']});
+const packItem = (T, m, d, t) => ({t, at:at(m,d,t), n:'🧳 回房整理行李', m:'明早 ' + T.leave.bag + ' 房門口收行李。護照、行動電源、貴重物品與免稅品，留在隨身包。'});
+const dayBase = (T, m, d, idx) => ({d:'D' + idx, key:dKey(m,d), date:dShort(m,d), wd:wdOf(m,d)});
+
+function arrivalDay(T, idx){
+  const [m, d] = T.start, A = t => at(m, d, t);
+  const ci = at(m, d, T.checkin.time, TW), dep = at(m, d, T.out.dep, TW), arr = A(T.out.arr), fn = T.out.no.replace(' ', '');
+  const items = [
+   {t:T.checkin.time, at:ci, n:'🛄 ' + T.airport.name + '・' + T.checkin.counter + '報到', m:'建議起飛前 2.5 小時抵達。託運 20 公斤、手提 10 公斤。', map:T.airport.map, hl:1,
+     cal:{s:ci, e:plus(ci, 2), title:T.city + '機場報到（台灣虎航櫃檯）', loc:T.airport.map}},
+   {t:T.out.dep, at:dep, n:'✈️ 起飛 ' + T.out.no + '　' + T.city + ' → 石垣島', m:'機上餐食無法預訂，僅接受機上購買。',
+     cal:{s:dep, e:arr, title:fn + ' ' + T.city + '→石垣島', loc:T.airport.map}},
+   {t:T.out.arr, at:arr, n:'🏝️ 抵達石垣島機場', m:'日本當地時間（比台灣快 1 小時）。出關後往大廳前方，找窗邊白色長櫃檯；鬧鐘獎團隊夥伴會持領隊旗在櫃檯前等大家。', hl:1, go:['info','i-arrive','看櫃檯位置圖']},
+   {t:'接著', n:'🚐 向 Club Med 接待人員詢問接駁', m:'出示 Club Med 訂單或姓名，依指示搭接駁車前往度假村。'},
+   {t:'接著', n:'📝 度假村統一辦理入住登記', m:'聽完入住說明就能使用村內設施與活動，行李由度假村協助托運至客房。'}
+  ];
+  if(m === 12 && d === 2) items.push(lecture(m, d));
+  items.push(
+   {t:'15:00', at:A('15:00'), n:'🔑 客房入住時間（約）', m:'房間約 15:00 可入住。'},
+   {t:'18:30', at:A('18:30'), n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'},
+   {t:'18:30', at:A('18:30'), n:'📝 想玩風浪板初學、出海浮潛？', m:'需前一天預約：18:30–19:00 到劇場前的水上活動報名櫃檯。', go:['resort','r-water','看水上活動']});
+  return Object.assign(dayBase(T, m, d, idx), {title:'✈️ 出發日・飛往石垣島', sub:T.arrSub,
+    tip:T.early + ' ' + T.checkin.time + ' 在' + T.airport.name + T.checkin.counter + '報到。前一晚早點睡，證件與行動電源先放進隨身包。',
+    act:['14:00','24:00'], actLabel:'抵達度假村後，今天還能玩的', items});
+}
+
+function freeDay(T, m, d, idx, o){
+  const A = t => at(m, d, t); o = o || {};
+  const items = [
+   {t:'07:00', at:A('07:00'), n:'🥐 主餐廳早餐', m:'07:00–09:30'},
+   {t:'09:00', at:A('09:00'), n:'🏖️ 海灘小屋開放', m:'上午場 09:00–12:00；海灘救生員 09:00–17:00 執勤。', hl:1, go:['resort','r-water','看水上活動']},
+   {t:'10:00', at:A('10:00'), n:'🌺 SPA 櫃檯營業', m:'10:00–18:00', c:'需額外付費', go:['resort','r-spa','看村外遊與 SPA']},
+   {t:'11:45', at:A('11:45'), n:'🍽️ 午餐', m:'主餐廳 11:45–13:45；輕食 14:00–15:30'}
+  ];
+  if(m === 12 && d === 2) items.push(lecture(m, d));
+  items.push(
+   {t:'14:00', at:A('14:00'), n:'🌊 海灘小屋下午場', m:'14:00–17:00'},
+   {t:'15:30', at:A('15:30'), n:'🍰 Tingara 吧台下午茶', m:'15:30–17:00'},
+   {t:'18:30', at:A('18:30'), n:'🍽️ 主餐廳晚餐時段', m:'18:30–20:30'});
+  if(o.eve) items.push(settleItem(m, d, '19:00'), packItem(T, m, d, '20:30'));
+  items.push({t:'21:30', at:A('21:30'), n:'🌙 Tingara 吧台消夜', m:'21:30–23:00'});
+  return Object.assign(dayBase(T, m, d, idx), {title:'🌴 自由放鬆日',
+    sub:(m === 12 && d === 2) ? '上午下午自由安排，13:15 有一場流年講座' : '沒有團體行程，海邊、泳池、課程，照自己的節奏',
+    tip:'📲 每日課程以 My Club Med APP 與村內公告為準。想體驗的活動，先看哪些要預約。' + (o.eve ? ' 今晚是離村前一晚，20:00 前記得到櫃台結清房帳。' : ''),
+    act:['08:00','24:00'], actLabel:'今天度假村有這些活動', openAct:1, items});
+}
+
+function awardDay(T, m, d, idx, eve){
+  const A = t => at(m, d, t), loc = 'Club Med 石垣島 空中飛人廣場（遇雨移至劇場）';
+  const items = [
+   {t:'07:00', at:A('07:00'), n:'🥐 主餐廳早餐', m:'07:00–09:30'},
+   {t:'09:30', at:A('09:30'), n:'🚪 知識沙龍開放入場', m:'空中飛人廣場（遇雨移至劇場）。無須報名，依時間到場。', go:['awards','venue-map','看場地位置']},
+   {t:'09:45', at:A('09:45'), n:'🎤 沙龍｜睡不好，問題可能從早上就開始了', m:'蔡宇哲 × 蔡承家 Jerry（09:45–10:30）', hl:1, go:['awards','salons','看沙龍介紹'],
+     cal:{s:A('09:45'), e:A('10:30'), title:'鬧鐘獎知識沙龍：睡不好，問題可能從早上就開始了', loc}},
+   {t:'10:40', at:A('10:40'), n:'🎤 沙龍｜錢到底要存到多少，才敢開始好好生活？', m:'郝旭烈（郝哥）・陳重銘・Dr. Selena 楊倩琳（10:40–11:25）', hl:1,
+     cal:{s:A('10:40'), e:A('11:25'), title:'鬧鐘獎知識沙龍：錢到底要存到多少，才敢開始好好生活？', loc}},
+   {t:'11:35', at:A('11:35'), n:'🎤 微醺女子沙龍｜有些鳥事，後來都成了叫醒自己的鬧鐘', m:'珊迪兔・Jill（11:35–12:20）', hl:1,
+     cal:{s:A('11:35'), e:A('12:20'), title:'鬧鐘獎知識沙龍：微醺女子沙龍', loc}},
+   {t:'12:20', at:A('12:20'), n:'☀️ 沙龍結束・午餐與自由時間', m:'主餐廳午餐到 13:45，輕食 14:00–15:30。'},
+   {t:'15:30', at:A('15:30'), n:'✨ 開放入場・星光大道貴賓進場', m:'劇場（大廳進來，面對泳池的右手邊）。踏上星光紅毯，在主題背板前留影；15:30–16:30 備有精緻雞尾酒與餐點。', hl:1, go:['awards','ceremony','看典禮流程']},
+   {t:'16:00', at:A('16:00'), n:'🏆 第二屆鬧鐘獎頒獎典禮', m:'16:00–18:00｜劇場', hl:1,
+     cal:{s:A('16:00'), e:A('18:00'), title:'第二屆鬧鐘獎頒獎典禮', loc:'Club Med 石垣島 劇場'}}
+  ];
+  if(eve) items.push(settleItem(m, d, '18:00', '典禮到餐敘中間有 30 分鐘。'));
+  items.push({t:'18:30', at:A('18:30'), n:'🥂 餐敘 & 抽獎活動', m:'餐廳 ROOM3（18:30–20:00）', hl:1,
+     cal:{s:A('18:30'), e:A('20:00'), title:'鬧鐘獎餐敘 & 抽獎活動', loc:'Club Med 石垣島 餐廳 ROOM3'}});
+  items.push(eve ? packItem(T, m, d, '20:00') : {t:'20:00', at:A('20:00'), n:'🌙 餐敘結束・自由活動', m:'Tingara 吧台營業到 00:00，21:30–23:00 有消夜。'});
+  return Object.assign(dayBase(T, m, d, idx), {award:1, title:'🏆 鬧鐘獎日', sub:'知識沙龍 → 頒獎典禮 → 餐敘 & 抽獎',
+    tip:'🎖️ 今天是主場。中午到下午有一段空檔，留給午休、看海，或慢慢換上典禮的裝扮。',
+    act:['12:30','15:30'], actLabel:'沙龍後到典禮前的空檔，可以玩', items});
+}
+
+function departDay(T, idx){
+  const [m, d] = T.end, A = t => at(m, d, t);
+  const bag = A(T.leave.bag), dep = A(T.back.dep), arr = at(m, d, T.back.arr, TW), fn = T.back.no.replace(' ', '');
+  return Object.assign(dayBase(T, m, d, idx), {title:'🧳 離村・返台日', sub:'前一晚都備妥，今天只管慢慢走',
+    tip:'🛍️ 想辦免稅退稅？商品先不要放進託運行李，先完成海關確認，再托運。',
+    items:[
+     {t:T.leave.bag, at:bag, n:'🧳 房門口收行李・退房', m:T.leave.bag + ' 前把行李放在房門口（退房時間為 ' + T.leave.checkout + ' 前）；超過時間需自行拿至前台。', hl:1,
+       cal:{s:bag, e:plus(bag, 0.5), title:'房門口收行李・退房', loc:'Club Med 石垣島'}},
+     {t:T.leave.car, at:A(T.leave.car), n:'🚐 搭車離開度假村（約）', m:'實際以度假村現場公告為準。'},
+     {t:T.back.dep, at:dep, n:'✈️ 起飛 ' + T.back.no + '　石垣島 → ' + T.city, m:'機上餐食僅接受機上購買。', hl:1,
+       cal:{s:dep, e:arr, title:fn + ' 石垣島→' + T.city, loc:'石垣空港'}},
+     {t:T.back.arr, at:arr, n:'🏠 抵達' + T.city + '機場', m:'台灣時間。辛苦了，回家慢慢休息。'}
+    ]});
+}
+
+function buildDays(T){
+  const [sm, sd] = T.start, [em, ed] = T.end, days = [arrivalDay(T, 1)];
+  let i = 2;
+  for(let dt = new Date(2026, sm - 1, sd + 1); dt < new Date(2026, em - 1, ed); dt.setDate(dt.getDate() + 1)){
+    const m = dt.getMonth() + 1, d = dt.getDate(), eve = (m === T.eve[0] && d === T.eve[1]);
+    days.push(m === 12 && d === 3 ? awardDay(T, m, d, i++, eve) : freeDay(T, m, d, i++, {eve}));
+  }
+  days.push(departDay(T, i));
+  return days;
+}
+Object.values(TRIPS).forEach(T => { T.days = buildDays(T); });
+let TRIP = null, DAYS = [];
 
 /* 度假村固定活動（來源：手冊 P16–17）；no＝該星期不開，only＝只有該星期開；0=日…6=六 */
 const ACT = [
@@ -854,46 +965,83 @@ const NOMS = [
 ['曼蒂歐逆 × 神燈教母Ivy','《任性歐逆機智生活》']
 ];
 
-const CK = [
- {g:'🛂 出發前，先處理好', items:[
-  ['vjw','註冊並填好 Visit Japan Web','入境、海關、退稅都能先辦；出發前登入確認內容'],
-  ['app','下載 My Club Med APP','活動項目、度假村地圖、服裝主題都在裡面'],
-  ['cash','準備日幣現金','度假村不提供換幣；村內付款用日幣現金，或 VISA／MASTER／AMEX／JCB'],
-  ['card','帶一張實體信用卡','部分活動需額外付費，消費當下結清，退房更快'],
-  ['book','想體驗的活動，記得前一天預約','出海浮潛、風浪板初級課程、村外遊、手工麵包'],
- ]},
- {g:'🧳 行李', items:[
-  ['pass','護照','證件請放隨身包'],
-  ['pb','行動電源、鋰電池、打火機放隨身','不能託運；打火機限帶 1 個'],
-  ['liq','液體分裝進透明夾鏈袋','單罐 100ml 以下、總量 1 公升內'],
-  ['wgt','託運 ≤ 20 公斤、手提 ≤ 10 公斤',''],
-  ['shoe','運動鞋','健身房、網球、壁球與健身課程都需要'],
-  ['bottle','一個可重複使用的水瓶','村內鼓勵重複使用空瓶，到吧台或飲水機補水'],
-  ['swim','泳衣、防曬',''],
-  ['dress','頒獎典禮與餐敘的服裝','12/3 15:30 起星光大道、紅毯拍照'],
- ]},
- {g:'📍 12/1 出發日', items:[
-  ['d1a','04:05 前到桃園機場第一航廈，台灣虎航櫃檯報到',''],
-  ['d1b','出關後找窗邊白色長櫃檯','向 Club Med 接待人員出示訂單或姓名'],
-  ['d1c','配戴度假村識別手環','入住期間隨時配戴，方便辨別年齡層'],
- ]},
- {g:'🌴 12/2 自由日', items:[
-  ['d2a','13:15 知識沙龍｜寶哥說流年（會議室）','不用報名，13:15–14:45'],
-  ['d2b','想預約的活動，今天先預約','出海浮潛、風浪板初級課程、村外遊、手工麵包都需前一天預約'],
- ]},
- {g:'🏆 12/3 鬧鐘獎日', items:[
-  ['d3a','09:45–12:20 知識沙龍（空中飛人廣場）','不用報名，遇雨移至劇場'],
-  ['d3b','15:30 星光大道進場，16:00 典禮開始','劇場在大廳進來、面對泳池的右手邊'],
-  ['d3c','18:00 典禮結束後，順路到櫃台結清房帳','最晚 20:00 前；含現場多單點的牛排、龍蝦、特殊酒單'],
-  ['d3d','18:30 餐敘 & 抽獎活動（餐廳 ROOM3）',''],
-  ['d3e','睡前把行李整理好','隔天 06:00 房門口收行李'],
- ]},
- {g:'🧳 12/4 離村日', items:[
-  ['d4a','06:00 前行李放房門口',''],
-  ['d4b','免稅品留在隨身包','先完成海關確認，再托運行李'],
-  ['d4c','07:00 搭車離開度假村，09:25 起飛','以現場公告為準'],
- ]},
-];
+/* 清單：共通項目＋依梯次產生的各日項目（勾選狀態以 key 記在手機上；梯次 a 沿用舊 key） */
+function ckFor(T){
+  const K = n => (T.id === 'a' ? '' : T.id + '-') + n;
+  const [sm, sd] = T.start, [em, ed] = T.end, [vm, vd] = T.eve;
+  const eveHere3 = (vm === 12 && vd === 3);
+  const g = [
+   {g:'🛂 出發前，先處理好', items:[
+    ['vjw','註冊並填好 Visit Japan Web','入境、海關、退稅都能先辦；出發前登入確認內容'],
+    ['app','下載 My Club Med APP','活動項目、度假村地圖、服裝主題都在裡面'],
+    ['cash','準備日幣現金','度假村不提供換幣；村內付款用日幣現金，或 VISA／MASTER／AMEX／JCB'],
+    ['card','帶一張實體信用卡','部分活動需額外付費，消費當下結清，退房更快'],
+    ['book','想體驗的活動，記得前一天預約','出海浮潛、風浪板初級課程、村外遊、手工麵包']
+   ]},
+   {g:'🧳 行李', items:[
+    ['pass','護照','證件請放隨身包'],
+    ['pb','行動電源、鋰電池、打火機放隨身','不能託運；打火機限帶 1 個'],
+    ['liq','液體分裝進透明夾鏈袋','單罐 100ml 以下、總量 1 公升內'],
+    ['wgt','託運 ≤ 20 公斤、手提 ≤ 10 公斤',''],
+    ['shoe','運動鞋','健身房、網球、壁球與健身課程都需要'],
+    ['bottle','一個可重複使用的水瓶','村內鼓勵重複使用空瓶，到吧台或飲水機補水'],
+    ['swim','泳衣、防曬',''],
+    ['dress','頒獎典禮與餐敘的服裝','12/3 15:30 起星光大道、紅毯拍照']
+   ]}
+  ];
+  const arrive = [
+   [K('d1a'), T.checkin.time + ' 前到' + T.airport.name + '，台灣虎航櫃檯報到', ''],
+   [K('d1b'), '出關後找窗邊白色長櫃檯', '向 Club Med 接待人員出示訂單或姓名；鬧鐘獎夥伴持領隊旗等大家'],
+   [K('d1c'), '配戴度假村識別手環', '入住期間隨時配戴，方便辨別年齡層']
+  ];
+  if(T.id !== 'a') arrive.push([K('lec'), '13:15 知識沙龍｜寶哥說流年（會議室）', '不用報名，13:15–14:45']);
+  g.push({g:'📍 ' + dFull(sm, sd) + ' 出發日', items:arrive});
+  if(T.id === 'a') g.push({g:'🌴 12/2 自由日', items:[
+    [K('d2a'), '13:15 知識沙龍｜寶哥說流年（會議室）', '不用報名，13:15–14:45'],
+    [K('d2b'), '想預約的活動，今天先預約', '出海浮潛、風浪板初級課程、村外遊、手工麵包都需前一天預約']
+  ]});
+  const award = [
+   [K('d3a'), '09:45–12:20 知識沙龍（空中飛人廣場）', '不用報名，遇雨移至劇場'],
+   [K('d3b'), '15:30 星光大道進場，16:00 典禮開始', '劇場在大廳進來、面對泳池的右手邊']
+  ];
+  if(eveHere3) award.push([K('d3c'), '18:00 典禮結束後，順路到櫃台結清房帳', '最晚 20:00 前；含現場多單點的牛排、龍蝦、特殊酒單']);
+  award.push([K('d3d'), '18:30 餐敘 & 抽獎活動（餐廳 ROOM3）', '']);
+  if(eveHere3) award.push([K('d3e'), '睡前把行李整理好', '隔天 ' + T.leave.bag + ' 房門口收行李']);
+  g.push({g:'🏆 12/3 鬧鐘獎日', items:award});
+  if(!eveHere3) g.push({g:'🌙 ' + dFull(vm, vd) + ' 離村前一晚', items:[
+    [K('ev1'), '20:00 前到櫃台結清房帳', '含現場多單點的牛排、龍蝦、特殊酒單'],
+    [K('ev2'), '睡前把行李整理好', '隔天 ' + T.leave.bag + ' 房門口收行李；護照、行動電源、免稅品留在隨身包']
+  ]});
+  g.push({g:'🧳 ' + dFull(em, ed) + ' 離村日', items:[
+    [K('d4a'), T.leave.bag + ' 前行李放房門口', '退房時間為 ' + T.leave.checkout + ' 前'],
+    [K('d4b'), '免稅品留在隨身包', '先完成海關確認，再托運行李'],
+    [K('d4c'), T.leave.car + ' 搭車離開度假村，' + T.back.dep + ' 起飛', '以現場公告為準']
+  ]});
+  return g;
+}
+
+/* 我的梯次重點（須知頁完整版、清單頁精簡版） */
+function briefHTML(T, full){
+  const [sm, sd] = T.start, [em, ed] = T.end, [vm, vd] = T.eve;
+  let h = '<h3>✈️ 我的梯次：' + dFull(sm, sd) + ' – ' + dFull(em, ed) + '・' + T.city + '出發・' + T.nDays + ' 日</h3><dl class="kv">';
+  h += '<dt>報到</dt><dd><b>' + dFull(sm, sd) + ' ' + T.checkin.time + '</b>　' + T.airport.name + '・' + T.checkin.counter + '<br><span class="muted">建議起飛前 2.5 小時抵達</span></dd>';
+  if(full){
+    h += '<dt>去程</dt><dd>' + dFull(sm, sd) + ' 台灣虎航 ' + T.out.no + '<br>' + T.city + ' ' + T.out.dep + ' → 石垣島 ' + T.out.arr + '<span class="muted">（日本當地時間）</span></dd>';
+    h += '<dt>回程</dt><dd>' + dFull(em, ed) + ' 台灣虎航 ' + T.back.no + '<br>石垣島 ' + T.back.dep + ' → ' + T.city + ' ' + T.back.arr + '<span class="muted">（台灣時間）</span></dd>';
+  }
+  h += '<dt>離村</dt><dd><b>' + dFull(vm, vd) + ' 20:00 前</b>到櫃台結清房帳<br>' + dFull(em, ed) + ' <b>' + T.leave.bag + '</b> 房門口收行李，約 ' + T.leave.car + ' 搭車離開</dd>';
+  if(full) h += '<dt>行李</dt><dd>託運 20 公斤、手提 10 公斤；機上餐食僅接受機上購買</dd>';
+  return h + '</dl>';
+}
+
+function leaveHTML(T){
+  const [em, ed] = T.end, [vm, vd] = T.eve;
+  return '<ol class="steps coral">' +
+    '<li><b>' + dFull(vm, vd) + ' 20:00 前</b>，到櫃台確認房帳是否結清（含現場多單點的牛排、龍蝦、特殊酒單等）。</li>' +
+    '<li><b>' + dFull(em, ed) + ' ' + T.leave.bag + '</b> 在房門口收行李（退房時間為 ' + T.leave.checkout + ' 前）；超過時間需自行拿到前台。</li>' +
+    '<li>約 <b>' + T.leave.car + '</b> 搭車離開度假村（實際以現場公告為準）。</li></ol>' +
+    '<div class="note" style="margin:10px 0 0">建議攜帶實體信用卡，部分活動需額外付費，消費當下結清，退房更快。</div>';
+}
 
 /* 單一時間的列用窄欄，時間區間用寬欄 */
 const fitSlots = () => $$('.slot').forEach(s => { const b = s.querySelector('b'); if(b && !/[–-]/.test(b.textContent)) s.classList.add('s'); });
@@ -913,7 +1061,7 @@ function goPage(name, anchor){
   }
   window.scrollTo({top:0});
 }
-$$('nav button').forEach(b => b.onclick = () => goPage(b.dataset.page));
+$$('nav button').forEach(b => b.onclick = () => { goPage(b.dataset.page); if(b.dataset.page === 'days') endGuide(); });
 document.addEventListener('click', e => {
   const g = e.target.closest('[data-go]');
   if(g){ const [p, a] = g.dataset.go.split(':'); goPage(p, a); }
@@ -938,14 +1086,16 @@ const dayOfNow = () => {
   return DAYS.findIndex(d => d.key === t);
 };
 const hm = s => s.split(':').map(Number).reduce((h, m) => h*60 + m);
-const strip = $('#dayStrip');
-DAYS.forEach((day, i) => {
-  const b = document.createElement('button');
-  b.className = 'chip'; b.setAttribute('role','tab');
-  b.innerHTML = day.d + '<small>' + day.date + '</small>';
-  b.onclick = () => renderDay(i);
-  strip.appendChild(b);
-});
+function buildDayStrip(){
+  const strip = $('#dayStrip'); strip.innerHTML = '';
+  DAYS.forEach((day, i) => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.setAttribute('role','tab');
+    b.innerHTML = day.d + '<small>' + day.date + '</small>';
+    b.onclick = () => renderDay(i);
+    strip.appendChild(b);
+  });
+}
 const MAP_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 
 function actBlock(day){
@@ -960,7 +1110,7 @@ function actBlock(day){
   });
   if(!list.length) return '';
   const buckets = [['☀️ 上午', 0, 720], ['🌤️ 下午', 720, 1020], ['🌇 傍晚', 1020, 1441]];
-  let h = '<details class="acc"' + (day.d === 'D2' ? ' open' : '') + '><summary>🏖️ ' + day.actLabel + '（' + list.length + ' 項）</summary><div class="acc-body">';
+  let h = '<details class="acc"' + (day.openAct ? ' open' : '') + '><summary>🏖️ ' + day.actLabel + '（' + list.length + ' 項）</summary><div class="acc-body">';
   buckets.forEach(([label, a, b]) => {
     const rows = list.filter(x => hm(x.t) >= a && hm(x.t) < b);
     if(!rows.length) return;
@@ -1006,20 +1156,6 @@ function renderDay(i){
   window.scrollTo({top:0});
   const on = $('#dayStrip .chip.on'); if(on) on.scrollIntoView({inline:'center', block:'nearest'});
 }
-const startDay = Math.max(0, dayOfNow());
-renderDay(startDay);
-
-/* ============ 倒數 ============ */
-(function(){
-  const el = $('#countdown'), now = NOW();
-  const start = new Date('2026-12-01T00:00:00+08:00');
-  const day = dayOfNow();
-  if(day >= 0) el.textContent = '🌴 旅程第 ' + (day + 1) + ' 天';
-  else if(now < start){
-    const n = Math.ceil((start - now) / 864e5);
-    el.textContent = '⏳ 還有 ' + n + ' 天出發';
-  } else el.textContent = '🌺 謝謝你一起上島';
-})();
 
 /* ============ 入圍名單搜尋 ============ */
 function renderNoms(q){
@@ -1071,10 +1207,10 @@ document.addEventListener('click', async e => {
 })();
 
 /* ============ 清單（localStorage） ============ */
-(function(){
-  const KEY = 'ishigaki-pack-v1';
-  let saved = {}; try{ saved = JSON.parse(localStorage.getItem(KEY) || '{}'); }catch(_){}
-  $('#ckBody').innerHTML = CK.map(g => '<div class="sec-title">' + g.g + '</div><div class="card">' +
+const CK_KEY = 'ishigaki-pack-v1';
+function renderChecklist(){
+  let saved = {}; try{ saved = JSON.parse(localStorage.getItem(CK_KEY) || '{}'); }catch(_){}
+  $('#ckBody').innerHTML = ckFor(TRIP).map(g => '<div class="sec-title">' + g.g + '</div><div class="card">' +
     g.items.map(([k, t, s]) => '<label class="ck"><input type="checkbox" data-ck="' + k + '"><span class="box" aria-hidden="true"></span><span class="t">' + esc(t) + (s ? '<small>' + esc(s) + '</small>' : '') + '</span></label>').join('') + '</div>').join('');
   const cks = $$('[data-ck]');
   function upd(){
@@ -1084,10 +1220,10 @@ document.addEventListener('click', async e => {
   }
   cks.forEach(c => {
     if(saved[c.dataset.ck]) c.checked = true;
-    c.addEventListener('change', () => { saved[c.dataset.ck] = c.checked; try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(_){} upd(); });
+    c.addEventListener('change', () => { saved[c.dataset.ck] = c.checked; try{ localStorage.setItem(CK_KEY, JSON.stringify(saved)); }catch(_){} upd(); });
   });
   upd();
-})();
+}
 
 /* ============ 行事曆 .ics ============ */
 const icsT = iso => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
@@ -1112,7 +1248,77 @@ document.addEventListener('click', e => {
   const [d, k] = b.dataset.cal.split(':'); const day = DAYS.find(x => x.d === d);
   downloadICS([day.items[+k].cal], 'ishigaki-' + d + '-' + k + '.ics');
 });
-$('#calAll').onclick = () => downloadICS(DAYS.flatMap(d => d.items.filter(i => i.cal).map(i => i.cal)), 'ishigaki-2026-all.ics');
+$('#calAll').onclick = () => downloadICS(DAYS.flatMap(d => d.items.filter(i => i.cal).map(i => i.cal)), 'ishigaki-2026-' + TRIP.id + '.ics');
+
+/* ============ 梯次選擇與開場導覽 ============ */
+let guideOn = false;
+const store = {
+  get: k => { try{ return localStorage.getItem(k); }catch(_){ return null; } },
+  set: (k, v) => { try{ localStorage.setItem(k, v); }catch(_){} }
+};
+
+function renderPicker(){
+  $('#pickList').innerHTML = Object.values(TRIPS).map(T => {
+    const [sm, sd] = T.start, [em, ed] = T.end;
+    return '<button class="pk-card' + (TRIP && TRIP.id === T.id ? ' on' : '') + '" type="button" data-trip="' + T.id + '">' +
+      '<span class="pk-top"><span class="pk-date">' + dFull(sm, sd) + ' → ' + dFull(em, ed) + '</span><span class="pk-days">' + T.nDays + ' 日</span></span>' +
+      '<span class="pk-from">🛫 ' + T.city + '出發</span>' +
+      '<span class="pk-fl">去程 ' + T.out.no + '　' + T.city + ' ' + T.out.dep + ' → 石垣島 ' + T.out.arr + '</span>' +
+      '<span class="pk-fl">回程 ' + T.back.no + '　石垣島 ' + T.back.dep + ' → ' + T.city + ' ' + T.back.arr + '</span>' +
+      '<span class="pk-fl">報到 ' + T.checkin.time + '・' + T.airport.name + '</span>' +
+      '<span class="pk-go">' + (TRIP && TRIP.id === T.id ? '目前的梯次' : '選這一梯 →') + '</span></button>';
+  }).join('');
+  $('#pickClose').hidden = !TRIP;
+}
+function openPicker(){
+  renderPicker();
+  $('#picker').classList.add('on'); $('#picker').scrollTop = 0;
+  const b = $('.pk-card.on'); if(b) b.focus({preventScroll:true});
+}
+function setGuideUI(){ $('#guideCheck').hidden = !guideOn; $('#guideInfo').hidden = !guideOn; }
+function endGuide(){ if(!guideOn) return; guideOn = false; store.set('isg-seen', TRIP.id); setGuideUI(); }
+
+function setCountdown(){
+  const el = $('#countdown'), now = NOW(), [m, d] = TRIP.start, start = new Date(dKey(m, d) + 'T00:00:00+08:00'), day = dayOfNow();
+  if(day >= 0) el.textContent = '🌴 旅程第 ' + (day + 1) + ' 天';
+  else if(now < start) el.textContent = '⏳ 還有 ' + Math.ceil((start - now) / 864e5) + ' 天出發';
+  else el.textContent = '🌺 謝謝你一起上島';
+}
+
+function applyTrip(id, opt){
+  const T = TRIPS[id]; TRIP = T; DAYS = T.days; store.set('isg-trip', id);
+  const [sm, sd] = T.start, [em, ed] = T.end;
+  $('#hSub').textContent = 'ISHIGAKI · 2026.' + p2(sm) + '.' + p2(sd) + ' – ' + p2(em) + '.' + p2(ed);
+  $('#hDays').textContent = T.nDays + ' 日';
+  $('#tripChip').textContent = '🧭 ' + sm + '/' + sd + '–' + em + '/' + ed + '・' + T.city + ' ✎';
+  $$('[data-settle]').forEach(e => { e.textContent = dFull(T.eve[0], T.eve[1]) + '晚上'; });
+  $('#leaveCard').innerHTML = leaveHTML(T);
+  $('#briefInfo').innerHTML = briefHTML(T, true);
+  $('#briefCheck').innerHTML = briefHTML(T, false);
+  buildDayStrip(); renderChecklist(); setCountdown();
+  renderDay(Math.max(0, dayOfNow()));
+  guideOn = !!(opt && opt.guide); setGuideUI();
+  $('#picker').classList.remove('on'); renderPicker();
+  goPage(guideOn ? 'check' : 'days');
+}
+
+$('#pickList').addEventListener('click', e => {
+  const b = e.target.closest('[data-trip]'); if(!b) return;
+  if(TRIP && TRIP.id === b.dataset.trip){ $('#picker').classList.remove('on'); return; }
+  applyTrip(b.dataset.trip, {guide:true});
+});
+$('#tripChip').onclick = openPicker;
+$('#pickClose').onclick = () => $('#picker').classList.remove('on');
+$('#guideNext').onclick = () => goPage('info');
+$('#guideDone').onclick = () => { endGuide(); goPage('days'); };
+
+(function init(){
+  renderPicker();
+  const q = new URLSearchParams(location.search).get('trip'), stored = store.get('isg-trip');
+  const id = TRIPS[q] ? q : (TRIPS[stored] ? stored : null);
+  if(id) applyTrip(id, {guide: store.get('isg-seen') !== id});
+  else openPicker();
+})();
 
 /* ============ 離線快取（PWA） ============ */
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
