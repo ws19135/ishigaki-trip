@@ -73,6 +73,7 @@ main{padding:18px 16px 8px;max-width:560px;margin:0 auto}
 .sec-title:first-child{margin-top:2px}
 .sec-title::after{content:"";flex:1;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--lagoon) 0 8px,transparent 8px 14px);opacity:.6}
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px;border:1px solid #f0e9db}
+#venue-map{scroll-margin-top:44px}
 .card h3{font-size:16px;font-weight:900;color:var(--ocean-deep);margin-bottom:4px}
 .note{background:var(--coral-soft);border-radius:14px;padding:10px 14px;font-size:14px;color:#a4472a;font-weight:700;margin-bottom:12px}
 .note.blue{background:#e2f4f8;color:var(--ocean-deep)}
@@ -324,9 +325,13 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
     <div class="bd"><b>餐敘 &amp; 抽獎活動</b><div class="muted">📍 餐廳 ROOM3</div></div>
   </div>
 
-  <div class="sec-title" id="venue-map">🗺️ 場地在哪裡</div>
+  <div class="sec-title" id="salons">🎤 石垣島限定・知識沙龍</div>
+  <div class="note gold">無須提前報名，依時間到場。12/3 三場在空中飛人廣場，遇雨移至劇場。</div>
+
   <div class="card">
-    <button class="zoom" data-zoom="assets/resort-map.jpg" aria-label="放大查看度假村地圖"><img src="assets/resort-map.jpg" alt="度假村地圖，圈出空中飛人廣場、會議室、劇場、餐廳" loading="lazy" width="1100" height="861"></button>
+    <h3 id="venue-map">📍 沙龍在哪裡</h3>
+    <p class="muted" style="margin-bottom:8px">12/3 三場沙龍在<b>空中飛人廣場</b>（遇雨移至劇場）；12/2 寶哥講座在<b>會議室</b>。圖上紅圈是今天會用到的地方，點圖可放大。</p>
+    <button class="zoom" data-zoom="assets/resort-map.jpg" aria-label="放大查看度假村地圖"><img src="assets/resort-map.jpg" alt="度假村地圖，紅圈標出空中飛人廣場、會議室、劇場、餐廳" loading="lazy" width="1600" height="1346"></button>
     <ul style="padding-left:1.1em">
       <li><b>空中飛人廣場</b>：12/3 知識沙龍（遇雨移至劇場）</li>
       <li><b>會議室</b>：12/2 知識沙龍｜寶哥說流年</li>
@@ -335,15 +340,13 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
     </ul>
   </div>
 
-  <div class="sec-title" id="salons">🎤 石垣島限定・知識沙龍</div>
-  <div class="note gold">無須提前報名，依時間到場。12/3 三場在空中飛人廣場，遇雨移至劇場。</div>
-
   <div class="card salon">
     <img class="ph" style="border-radius:0;margin:0" src="assets/salon-baoge.jpg" alt="人生設計學院【寶哥說流年】2027 丁未羊年流年講座" loading="lazy" width="900" height="507">
     <div class="in">
       <div class="no">12/2（三）・會議室</div>
       <h3>人生設計學院【寶哥說流年】<br>2027 丁未羊年流年講座：破局迎新，掌握全年開運關鍵！</h3>
       <div class="tm">🕐 13:15 – 14:45</div>
+      <div class="acts" style="margin:0 0 8px"><button class="btn ghost" type="button" data-go="awards:venue-map">📍 看位置圖</button></div>
       <ul class="who">
         <li><b>胡靖韋　寶哥</b><small>開運心理學講師、寶哥說流年＆心理</small></li>
       </ul>
@@ -357,6 +360,7 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
       <div class="no">12/3（四）・空中飛人廣場</div>
       <h3>睡不好，問題可能從早上就開始了</h3>
       <div class="tm">🕘 09:45 – 10:30</div>
+      <div class="acts" style="margin:0 0 8px"><button class="btn ghost" type="button" data-go="awards:venue-map">📍 看位置圖</button></div>
       <ul class="who">
         <li><b>蔡宇哲</b><small>哇賽心理學 創辦人、睡眠專家</small></li>
         <li><b>蔡承家 Jerry</b><small>舒活適共同創辦人＆產品總監</small></li>
@@ -371,6 +375,7 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
       <div class="no">12/3（四）・空中飛人廣場</div>
       <h3>錢到底要存到多少，才敢開始好好生活？</h3>
       <div class="tm">🕙 10:40 – 11:25</div>
+      <div class="acts" style="margin:0 0 8px"><button class="btn ghost" type="button" data-go="awards:venue-map">📍 看位置圖</button></div>
       <ul class="who">
         <li><b>郝旭烈（郝哥）</b><small>《郝聲音》主持人、暢銷作家｜主持</small></li>
         <li><b>陳重銘</b><small>不敗教主、投資理財暢銷作家｜對談</small></li>
@@ -386,6 +391,7 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
       <div class="no">12/3（四）・空中飛人廣場</div>
       <h3>微醺女子沙龍｜有些鳥事，後來都成了叫醒自己的鬧鐘</h3>
       <div class="tm">🕦 11:35 – 12:20</div>
+      <div class="acts" style="margin:0 0 8px"><button class="btn ghost" type="button" data-go="awards:venue-map">📍 看位置圖</button></div>
       <ul class="who">
         <li><b>珊迪兔</b><small>《精算媽咪的家計簿》主持人</small></li>
         <li><b>Jill</b><small>《爛泥Jill式優雅》主持人</small></li>
