@@ -209,14 +209,6 @@ details.acc[open]>summary{border-bottom:1px dashed #eee5d4}
 .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lagoon),var(--ocean));border-radius:99px;transition:width .4s}
 .prog-t{font-size:13.5px;font-weight:900;color:var(--ocean-deep)}
 
-/* ===== Currency ===== */
-.cx{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cx label{font-size:13px;font-weight:900;color:var(--ink-soft);display:block;margin-bottom:2px}
-.cx input{font-family:inherit;font-size:18px;font-weight:900;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;background:#fffdf8;width:100%}
-.cx input:focus{outline:none;border-color:var(--ocean)}
-.rate{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);font-weight:700;margin-top:10px;flex-wrap:wrap}
-.rate input{width:72px;font-family:inherit;font-size:14px;font-weight:900;border:1.5px solid var(--line);border-radius:8px;padding:3px 8px;text-align:center;background:#fffdf8}
-
 /* ===== Sheet (SOS) ===== */
 #sheet{position:fixed;inset:0;z-index:90;display:none;background:rgba(10,20,30,.5)}
 #sheet.on{display:block}
@@ -438,14 +430,13 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
         <dt>電壓</dt><dd>100 伏特，Type B 插座</dd>
         <dt>時差</dt><dd>比台灣快 1 小時</dd>
         <dt>氣溫</dt><dd>平均攝氏 16 至 32 度</dd>
-        <dt>貨幣</dt><dd>日幣（台幣：日幣 ≈ 1：4.33，依當日匯率）<br><b>度假村不提供換幣服務</b></dd>
+        <dt>貨幣</dt><dd>日幣<br><b>度假村不提供換幣服務</b></dd>
         <dt>付款</dt><dd>村內使用日幣現金；信用卡可用 VISA、MASTER、AMEX、JCB</dd>
         <dt>網路</dt><dd>主要活動區域與客房提供免費 Wi-Fi</dd>
       </dl>
       <div class="acts">
         <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Club%20Med%20Kabira%20Ishigaki%20Island%20907-0453">🧭 開地圖</a>
         <button class="btn ghost" data-copy="Ishigaki 1, Banchi, Kabira-Ishigaki City, 907-0453 Okinawa">📋 複製地址（給計程車）</button>
-        <button class="btn ghost" data-go="info:money">💴 日幣速算</button>
       </div>
       <h4>Reception 櫃檯服務</h4>
       <ul>
@@ -703,15 +694,6 @@ nav button.on::before{content:"";position:absolute;top:0;width:34px;height:3.5px
     </ul>
     <p class="muted" style="margin:8px 0">依日本官方 2026 年免稅制度公告整理；實際流程依店家及出境機場現場指示為準。</p>
     <button class="zoom" data-zoom="assets/info-tax.jpg" aria-label="放大查看免稅新制懶人包"><img src="assets/info-tax.jpg" alt="日本免稅新制懶人包" loading="lazy" width="900" height="1350"></button>
-  </div>
-
-  <div class="sec-title" id="money">💴 日幣速算</div>
-  <div class="card">
-    <div class="cx">
-      <div><label for="jpy">日幣 ¥</label><input id="jpy" type="number" inputmode="decimal" min="0" placeholder="例如 3000"></div>
-      <div><label for="twd">台幣 NT$</label><input id="twd" type="number" inputmode="decimal" min="0" placeholder="約"></div>
-    </div>
-    <div class="rate">匯率：NT$ 1 ＝ ¥ <input id="rate" type="number" inputmode="decimal" step="0.01" min="0.01" aria-label="匯率（1 台幣兌多少日幣）"> <span>（手冊參考 4.33，請依當日匯率調整）</span></div>
   </div>
 
   <div class="sec-title" id="i-contact">☎️ 聯絡方式</div>
@@ -1078,7 +1060,7 @@ function buildStrip(id, list){
   };
 }
 buildStrip('#resortStrip', [['r-basic','基本'],['r-room','客房'],['r-food','餐廳'],['r-land','陸上'],['r-water','水上'],['r-leisure','泳池'],['r-kids','兒童'],['r-spa','SPA'],['r-app','APP']]);
-buildStrip('#infoStrip', [['i-arrive','抵達'],['i-leave','離村'],['i-rules','提醒'],['i-vjw','入境'],['i-security','安檢'],['i-tax','免稅'],['money','日幣'],['i-contact','聯絡']]);
+buildStrip('#infoStrip', [['i-arrive','抵達'],['i-leave','離村'],['i-rules','提醒'],['i-vjw','入境'],['i-security','安檢'],['i-tax','免稅'],['i-contact','聯絡']]);
 
 /* ============ 每日行程渲染 ============ */
 const dayOfNow = () => {
@@ -1190,21 +1172,6 @@ document.addEventListener('click', async e => {
   catch(_){ const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(__){} t.remove(); }
   b.textContent = '✓ 已複製'; setTimeout(() => b.textContent = old, 1600);
 });
-
-/* ============ 日幣速算 ============ */
-(function(){
-  let rate = parseFloat(localStorage.getItem('isg-rate')) || 4.33;
-  const r = $('#rate'), j = $('#jpy'), t = $('#twd');
-  r.value = rate;
-  const fmt = n => String(Math.round(n * 100) / 100);
-  j.addEventListener('input', () => { t.value = j.value === '' ? '' : fmt(parseFloat(j.value) / rate); });
-  t.addEventListener('input', () => { j.value = t.value === '' ? '' : fmt(parseFloat(t.value) * rate); });
-  r.addEventListener('change', () => {
-    const v = parseFloat(r.value);
-    if(v > 0){ rate = v; try{ localStorage.setItem('isg-rate', v); }catch(_){} if(j.value !== '') j.dispatchEvent(new Event('input')); }
-    else r.value = rate;
-  });
-})();
 
 /* ============ 清單（localStorage） ============ */
 const CK_KEY = 'ishigaki-pack-v1';
